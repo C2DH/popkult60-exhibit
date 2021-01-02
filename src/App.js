@@ -8,7 +8,7 @@ const { languageCode } = initializeI18next()
 const App = () => {
   return (
     <BrowserRouter>
-    <main><AppRoutes startLanguageCode={languageCode}/></main>
+    <AppRoutes startLanguageCode={languageCode}/>
     <Footer />
     </BrowserRouter>
   );

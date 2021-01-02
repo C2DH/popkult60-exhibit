@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 const Home = () => {
   const { t } = useTranslation()
   return (
-    <Container>
+    <Container fluid className="h-100">
       <Row>
         <Col>
           <h1 className="my-5">{t('pagesHomeTitle')}</h1>

@@ -1,8 +1,13 @@
 // Override variables
 @import 'variables';
+@import 'fonts';
 
 // Boostrap scss
 @import '~bootstrap/scss/bootstrap';
+
+body, html {
+  height: 100%;
+}
 
 body {
   margin: 0;
@@ -16,4 +21,13 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  --font-family-headings: 'Olio-Bold';
+  --font-family-titles: 'OlioInline';
+}
+
+h1{
+  font-family: var(--font-family-titles)
 }
