@@ -1,17 +1,35 @@
-import React from 'react'
-import { useSpring, animated } from "react-spring";
-const Logo = ({ width=600, height=200, id='logo', strokeColor='#1F7E77', fillColor='var(--gray)' }) => {
+import React, { useEffect } from 'react'
+import { useSpring, animated } from 'react-spring'
+import { useStore } from '../store'
+const yTranslate = (y) => `translate3d(0px, ${y}px, 0px)`
 
-  const [{ color }, set] = useSpring(() => ({ color: strokeColor }));
+const yInitial = -40
+
+const Logo = ({ width=600, height=200, id='logo', strokeColor='#1F7E77', fillColor='var(--gray)' }) => {
+  const logoReduced = useStore((state) => state.logoReduced);
+
+  const [{ color }, set] = useSpring(() => ({ color: strokeColor, y: yInitial }));
+  const [{ y }, setY] = useSpring(() => ({ y: logoReduced ? -height/2 : yInitial }));
+
+  useEffect(() => {
+    setY({ y: logoReduced ? -height/2: yInitial })
+  })
 
   return (
-    <div className="Logo" id={id}
-      onMouseEnter={() => set({ color: "#000" })}
-      onMouseLeave={() => set({ color: strokeColor })}
+    <animated.div className="Logo" id={id}
+      onMouseEnter={() => {
+        set({ color: '#121821' })
+        setY({ y: yInitial })
+      }}
+      onMouseLeave={() => {
+        set({ color: strokeColor })
+        setY({ y: logoReduced ? -height/2: yInitial })
+      }}
       style={{
         marginLeft: -width/2,
         width,
-        height
+        height,
+        transform: y.interpolate(yTranslate)
       }}
     >
     <svg width={width} height={height} viewBox="0 0 400 96">
@@ -31,7 +49,7 @@ const Logo = ({ width=600, height=200, id='logo', strokeColor='#1F7E77', fillCol
       <animated.path stroke={color} fill={fillColor} d="M76.28,48.54a5.66,5.66,0,1,1,5.66-5.66A5.67,5.67,0,0,1,76.28,48.54Zm0-8.49a2.83,2.83,0,1,0,2.83,2.83A2.83,2.83,0,0,0,76.28,40Z"/>
       <animated.path stroke={color} fill={fillColor} d="M226.74,81.56l-4.36-13.49L218,81.56l-4.36-13.49L209.3,81.56l-4.36-13.49-4.36,13.49-4.36-13.49-4.36,13.49-4.36-13.49-4.36,13.49-4.36-13.49-4.36,13.49-4.36-13.49-4.36,13.49-4.36-13.49L157,81.56l-4.36-13.49-4.36,13.49-2.82-8.73h-70V47.53h1.77V71.06h69.56l1.53,4.75,4.36-13.49L157,75.81l4.36-13.49,4.36,13.49,4.36-13.48,4.36,13.49,4.36-13.49,4.36,13.49,4.36-13.49,4.36,13.49,4.36-13.49,4.36,13.49,4.36-13.49,4.36,13.49,4.36-13.49L218,75.81l4.36-13.49,4.36,13.48,4.36-13.49,4.36,13.49,4.36-13.49,4.36,13.49,4.36-13.49,4.36,13.49,4.36-13.49,4.36,13.49L266,62.33l4.37,13.49,4.37-13.49,4.36,13.49,4.37-13.49,4.37,13.49,4.37-13.49,4.38,13.49,1.54-4.76H368V40.11h1.77V71.94c0,.88,0,.88-3.9.88H299.39l-2.83,8.73-4.37-13.49-4.37,13.49-4.37-13.49-4.37,13.49-4.36-13.49-4.37,13.49L266,68.07l-4.36,13.49-4.36-13.49L252.9,81.56l-4.36-13.49-4.36,13.49-4.36-13.49-4.36,13.49L231.1,68.08Z"/>
     </svg>
-    </div>
+    </animated.div>
   )
 }
 export default Logo

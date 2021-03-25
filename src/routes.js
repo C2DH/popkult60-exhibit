@@ -9,6 +9,8 @@ const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'))
 const NotFound = lazy(() => import('./pages/NotFound'))
+const DocumentDetail = lazy(() => import('./pages/DocumentDetail'))
+
 /* Pages routing by language */
 const LangRoutes = () => {
   const { path } = useRouteMatch()
@@ -20,8 +22,14 @@ const LangRoutes = () => {
       <Route exact path={`${path}/about`}>
         <About />
       </Route>
+      <Route exact path={`${path}/loading`}>
+        <AppRouteLoading />
+      </Route>
       <Route exact path={`${path}/about`}>
         <TermsOfUse />
+      </Route>
+      <Route exact path={`${path}/doc/:id`}>
+        <DocumentDetail />
       </Route>
       <Route path={`${path}*`}>
         <NotFound />

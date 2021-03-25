@@ -1,0 +1,13 @@
+.DocumentViewerMetadata th,
+.DocumentViewerMetadata td {
+  border-top: 1px solid var(--border-color);
+}
+
+.DocumentViewerMetadata th {
+  border-right: 1px solid var(--border-color);
+}
+
+.DocumentViewerMetadata tr:first-of-type th,
+.DocumentViewerMetadata tr:first-of-type td {
+  border-top: none;
+}

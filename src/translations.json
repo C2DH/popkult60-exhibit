@@ -7,7 +7,14 @@
       "navigationTermsOfUse": "Terms of use",
       "pagesHomeTitle": "Popkult60 (en)",
       "pagesHomeSubheading": "",
-      "pagesNotFoundTitle": "Not Found"
+      "pagesNotFoundTitle": "Not Found",
+      "documentDescription": "Description",
+      "documentDataCreator": "Creator",
+      "documentDataSourceIdentifier": "Source Identifier",
+      "documentDataPublisher": "Publisher",
+      "documentDataProvenance": "Source",
+      "documentCopyright": "Copyright",
+      "pagesAppRouteLoadingTitle": "loading..."
     }
   },
   "fr-FR": {
@@ -18,7 +25,32 @@
       "navigationTermsOfUse": "Terms of use",
       "pagesHomeTitle": "Popkult60 (fr)",
       "pagesHomeSubheading": "",
-      "pagesNotFoundTitle": "Not Found"
+      "pagesNotFoundTitle": "Not Found",
+      "documentDescription": "Description",
+      "documentDataCreator": "Creator",
+      "documentDataSourceIdentifier": "Source Identifier",
+      "documentDataPublisher": "Publisher",
+      "documentDataProvenance": "Source",
+      "documentCopyright": "Copyright",
+      "pagesAppRouteLoadingTitle": "loading..."
+    }
+  },
+  "de-DE": {
+    "translation": {
+      "asNumber": "{{ n,2 }}",
+      "navigationAbout": "About",
+      "navigationHome": "/",
+      "navigationTermsOfUse": "Terms of use",
+      "pagesHomeTitle": "Popkult60 (fr)",
+      "pagesHomeSubheading": "",
+      "pagesNotFoundTitle": "Not Found",
+      "documentDescription": "Description",
+      "documentDataCreator": "Creator",
+      "documentDataSourceIdentifier": "Source Identifier",
+      "documentDataPublisher": "Publisher",
+      "documentDataProvenance": "Source",
+      "documentCopyright": "Copyright",
+      "pagesAppRouteLoadingTitle": "loading..."
     }
   }
 }
