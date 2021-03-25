@@ -1,0 +1,14 @@
+.DocumentDetail_close {
+  z-index: var(--modal-close-z-index);
+  position: fixed;
+  color: var(--dark);
+  left: 1.5rem;
+  top: 1.5rem;
+  cursor: pointer;
+  &:hover,
+  &:active,
+  &:visited {
+    color: var(--celadon-green);
+    text-decoration: none;
+  }
+}
