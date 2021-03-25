@@ -1,5 +1,5 @@
 import i18n from 'i18next'
-import moment from 'moment'
+import { DateTime } from 'luxon'
 import intersection from 'lodash/intersection'
 import { initReactI18next, useTranslation } from 'react-i18next'
 import { matchPath } from 'react-router'
@@ -42,14 +42,15 @@ const initializeI18next = () => {
     .init({
       resources: translations,
       lng: language,
+      defaultLocale: process.env.REACT_APP_DEFAULT_LANGUAGE || 'en_GB',
       interpolation: {
         escapeValue: false, // react already safes from xss
         format: function(value, format, lng) {
             if(value instanceof Date) {
               if (format === 'fromNow') {
-                return moment(value).fromNow()
+                return DateTime.fromJSDate(value, {locale: lng}).toRelative()
               }
-              return moment(value).format(format)
+              return DateTime.fromJSDate(value, {locale: lng}).format(format)
             } else if (typeof value === 'number') {
               // adapt number
               return new Intl.NumberFormat(lng, { maximumFractionDigits: format }).format(value)
