@@ -5,24 +5,6 @@
 // Boostrap scss
 @import '~bootstrap/scss/bootstrap';
 
-body, html {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
 :root {
   --font-family-headings: 'Olio-Bold';
   --font-family-titles: 'OlioInline';
@@ -36,11 +18,33 @@ code {
   --rich-black-FOGRA-29:#121821;
 }
 
-h1{
-  font-family: var(--font-family-titles)
+body, html {
+  height: 100%;
 }
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--secondary);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+h1{
+  font-family: var(--font-family-titles);
+}
+
 h2{
-  font-family: var(--font-family-headings)
+  font-family: var(--font-family-headings);
+  font-size: 2rem;
 }
 
 #logo{
@@ -48,4 +52,8 @@ h2{
   top: 0;
   left: 50%;
   z-index: 1001;
+}
+
+#root{
+  min-height: 100%;
 }
