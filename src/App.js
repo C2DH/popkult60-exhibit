@@ -10,7 +10,7 @@ const { languageCode } = initializeI18next()
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL || ''}>
       <MainBackground />
       <Logo id="logo" />
       <AppRoutes startLanguageCode={languageCode} />

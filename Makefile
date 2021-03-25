@@ -1,4 +1,5 @@
 BUILD_TAG ?= latest
+PUBLIC_URL ?= /e
 
 run:
 	docker-compose down --remove-orphans && \
@@ -11,12 +12,14 @@ run-dev:
 	REACT_APP_GIT_TAG=$(shell git describe --tags --abbrev=0 HEAD) \
 	REACT_APP_GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD) \
 	REACT_APP_GIT_REVISION=$(shell git rev-parse --short HEAD) \
+	PUBLIC_URL=${PUBLIC_URL} \
 	yarn start
 
 run-build:
 	REACT_APP_GIT_TAG=$(shell git describe --tags --abbrev=0 HEAD) \
 	REACT_APP_GIT_BRANCH=$(shell git rev-parse --abbrev-ref HEAD) \
 	REACT_APP_GIT_REVISION=$(shell git rev-parse --short HEAD) \
+	PUBLIC_URL=${PUBLIC_URL}
 	yarn build
 
 run-build-noindex:
