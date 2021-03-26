@@ -20,7 +20,7 @@ const DocumentDetail = () => {
 
   useEffect(() => {
     useStore.setState({
-      backgroundColor: 'var(--blanched-almond)',
+      backgroundColor: 'var(--rich-black-FOGRA-29)',
       logoReduced: true
     });
   }, [])
