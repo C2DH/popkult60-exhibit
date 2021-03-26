@@ -1,0 +1,87 @@
+.Player {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: auto;
+  max-height: 100%;
+  background: darken(#222322, 5%);
+  video {
+    max-width: 100%;
+    outline: none;
+    // max-height: calc(80vh - 3rem);
+  }
+  overflow: hidden;
+}
+
+.Controls {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  position: absolute;
+  bottom: 0px;
+  background: linear-gradient(0deg, black 0%, rgba(0, 0, 0, 0) 100%);
+  transform: translateY(100%);
+  transition: transform var(--transition);
+}
+
+.Controls.controlsShow {
+  transform: translateY(0%);
+}
+
+.Controls > div {
+  margin-right: 10px;
+}
+
+.Controls > div:last-of-type {
+  margin-right: 0px;
+}
+
+.ProggressLine {
+  position: relative;
+  height: 8px;
+  width: 100%;
+  background: white;
+  cursor: pointer;
+  .ProggressPlayed {
+    height: 100%;
+    background: var(--primary);
+    transition: width 0.3s linear;
+  }
+}
+
+.controlIcon {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.controlIcon.disabled {
+  opacity: 0.5;
+}
+
+.Volume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  input {
+    margin-left: 0px;
+    opacity: 0;
+    width: 0px;
+    height: 5px;
+    transition: width var(--transition), opacity var(--transition);
+  }
+}
+
+.Volume:hover {
+  input {
+    margin-left: 10px;
+    opacity: 1;
+    width: 100px;
+  }
+}
