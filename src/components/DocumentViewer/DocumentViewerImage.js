@@ -1,5 +1,5 @@
 import React from 'react'
-import ZoomAndPanMedia from './ZoomAndPanMedia'
+import ZoomAndPanMedia from '../ZoomAndPanMedia'
 
 const DocumentViewerImage = ({ doc, height}) => {
 
