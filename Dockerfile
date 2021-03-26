@@ -3,11 +3,14 @@ FROM node:14.15.0-alpine as builder
 ARG GIT_TAG
 ARG GIT_BRANCH
 ARG GIT_REVISION
+ARG PUBLIC_URL
 
 WORKDIR /app
 
 COPY package.json .
 COPY yarn.lock .
+
+RUN apk add git
 
 RUN yarn install
 
@@ -21,7 +24,7 @@ ENV NODE_OPTIONS --max_old_space_size=4096
 ENV REACT_APP_GIT_TAG=${GIT_TAG}
 ENV REACT_APP_GIT_BRANCH=${GIT_BRANCH}
 ENV REACT_APP_GIT_REVISION=${GIT_REVISION}
-
+ENV PUBLIC_URL=${PUBLIC_URL}
 RUN yarn build
 
 FROM busybox
