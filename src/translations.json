@@ -5,6 +5,18 @@
       "navigationAbout": "About",
       "navigationHome": "/",
       "navigationTermsOfUse": "Terms of use",
+      "pagesAppRouteLoadingTitle": "loading...",
+      "pagesCollectionError": "There's something wrong.",
+      "pagesCollectionLoading": "loading resources...",
+      "pagesCollectionSearch": "Search",
+      "pagesCollectionSortingGroup-all": "All resources",
+      "pagesCollectionSortingGroup-datacreator": "group by resource creator",
+      "pagesCollectionSortingGroup-datatype": "group by resource type",
+      "pagesCollectionSortingGroup-datayear": "group by year of publication",
+      "pagesCollectionSortingGroup-type": "group by type of media",
+      "pagesCollectionSortingOrder-asc": "ascending",
+      "pagesCollectionSortingOrder-desc": "descending",
+      "pagesCollectionTitle": "Collection",
       "pagesHomeTitle": "Popkult60 (en)",
       "pagesHomeSubheading": "",
       "pagesNotFoundTitle": "Not Found",
@@ -14,7 +26,11 @@
       "documentDataPublisher": "Publisher",
       "documentDataProvenance": "Source",
       "documentCopyright": "Copyright",
-      "pagesAppRouteLoadingTitle": "loading..."
+      "documentTypes-audio": "Audio",
+      "documentTypes-photo": "Photo",
+      "documentTypes-video": "Video",
+      "documentTypes-map": "Map",
+      "documentTypes-archive": "Archive"
     }
   },
   "fr-FR": {
@@ -23,7 +39,17 @@
       "navigationAbout": "About",
       "navigationHome": "/",
       "navigationTermsOfUse": "Terms of use",
-      "pagesHomeTitle": "Popkult60 (fr)",
+      "pagesAppRouteLoadingTitle": "loading...",
+      "pagesCollectionError": "There's something wrong.",
+      "pagesCollectionLoading": "loading resources...",
+      "pagesCollectionSearch": "Search",
+      "pagesCollectionSortingGroup-all": "All reources",
+      "pagesCollectionSortingGroup-data.type": "group by resource type",
+      "pagesCollectionSortingGroup-data.year": "group by year of publication",
+      "pagesCollectionSortingOrder-asc": "ascending",
+      "pagesCollectionSortingOrder-desc": "descending",
+      "pagesCollectionTitle": "Collection",
+      "pagesHomeTitle": "Popkult60 (en)",
       "pagesHomeSubheading": "",
       "pagesNotFoundTitle": "Not Found",
       "documentDescription": "Description",
@@ -32,7 +58,11 @@
       "documentDataPublisher": "Publisher",
       "documentDataProvenance": "Source",
       "documentCopyright": "Copyright",
-      "pagesAppRouteLoadingTitle": "loading..."
+      "documentTypes-audio": "Audio",
+      "documentTypes-photo": "Photo",
+      "documentTypes-video": "Video",
+      "documentTypes-map": "Map",
+      "documentTypes-archive": "Archive"
     }
   },
   "de-DE": {
@@ -41,7 +71,16 @@
       "navigationAbout": "About",
       "navigationHome": "/",
       "navigationTermsOfUse": "Terms of use",
-      "pagesHomeTitle": "Popkult60 (fr)",
+      "pagesAppRouteLoadingTitle": "loading...",
+      "pagesCollectionError": "There's something wrong.",
+      "pagesCollectionLoading": "loading resources...",
+      "pagesCollectionSearch": "Search",
+      "pagesCollectionSortingGroup-data.type": "group by resource type",
+      "pagesCollectionSortingGroup-data.year": "group by year of publication",
+      "pagesCollectionSortingOrder-asc": "ascending",
+      "pagesCollectionSortingOrder-desc": "descending",
+      "pagesCollectionTitle": "Collection",
+      "pagesHomeTitle": "Popkult60 (en)",
       "pagesHomeSubheading": "",
       "pagesNotFoundTitle": "Not Found",
       "documentDescription": "Description",
@@ -50,7 +89,11 @@
       "documentDataPublisher": "Publisher",
       "documentDataProvenance": "Source",
       "documentCopyright": "Copyright",
-      "pagesAppRouteLoadingTitle": "loading..."
+      "documentTypes-audio": "Audio",
+      "documentTypes-photo": "Photo",
+      "documentTypes-video": "Video",
+      "documentTypes-map": "Map",
+      "documentTypes-archive": "Archive"
     }
   }
 }
