@@ -17,6 +17,8 @@
   --royal-blue-dark: #0A2463;
   --liberty: #53599A;
   --rich-black-FOGRA-29:#121821;
+  --grid-size-lg: 68px;
+  --grid-size: 100px;
 }
 
 body, html {
@@ -61,4 +63,18 @@ h2{
 
 .border-white{
   border-color: var(--white) !important;
+}
+.text-white{
+  color: var(--white) !important;
+}
+
+.bg-white{
+  background-color: var(--white) !important;
+}
+
+
+.MiniDocument_img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
