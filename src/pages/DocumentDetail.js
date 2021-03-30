@@ -30,11 +30,11 @@ const DocumentDetail = () => {
       className="DocumentDetail position-relative h-100"
     >
       <LangLink
-        to="/explorations/all"
+        to="/collection"
         className="DocumentDetail_close d-flex align-items-center"
       >
-        <ArrowLeft />
-        <span className="ml-2 text-uppercase font-weight-bold">
+        <ArrowLeft color="var(--white)"/>
+        <span className="ml-2 text-uppercase text-white font-weight-bold">
           {t('all resources')}
         </span>
       </LangLink>
