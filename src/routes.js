@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, useEffect } from 'react'
-import { Switch, Route, Redirect, useRouteMatch, useLocation } from "react-router-dom"
 import ReactGA from 'react-ga'
+import { Switch, Route, Redirect, useRouteMatch, useLocation } from "react-router-dom"
+import { QueryParamProvider } from 'use-query-params'
 import AppRouteLoading from './pages/AppRouteLoading'
 import { LanguageRoutePattern } from './constants'
 
@@ -10,10 +11,13 @@ const About = lazy(() => import('./pages/About'))
 const TermsOfUse = lazy(() => import('./pages/TermsOfUse'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const DocumentDetail = lazy(() => import('./pages/DocumentDetail'))
+const Collection = lazy(() => import('./pages/Collection'))
 
 /* Pages routing by language */
 const LangRoutes = () => {
   const { path } = useRouteMatch()
+  // const publicPath = `${process.env.PUBLIC_URL || ''}${path}`
+  // console.info('publicPath', publicPath)
   return (
     <Switch>
       <Route exact path={`${path}`}>
@@ -30,6 +34,9 @@ const LangRoutes = () => {
       </Route>
       <Route exact path={`${path}/doc/:id`}>
         <DocumentDetail />
+      </Route>
+      <Route exact path={`${path}/collection`}>
+        <Collection />
       </Route>
       <Route path={`${path}*`}>
         <NotFound />
@@ -57,9 +64,9 @@ const usePageViews = ({ enableGA }) => {
 
 const AppRoutes = ({enableGA=false, startLanguageCode='en'}) => {
   usePageViews({ enableGA })
-
   return (
     <Suspense fallback={<AppRouteLoading/>}>
+    <QueryParamProvider ReactRouterRoute={Route}>
     <Switch>
       <Redirect from="/" exact to={startLanguageCode} />
       <Route path={LanguageRoutePattern}>
@@ -69,6 +76,7 @@ const AppRoutes = ({enableGA=false, startLanguageCode='en'}) => {
         <NotFound />
       </Route>
     </Switch>
+    </QueryParamProvider>
     </Suspense>
   )
 }
