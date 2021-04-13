@@ -12,6 +12,7 @@ const ThemesReel = ({ themes=[], currentThemeIdx=0, width=0, height=0 }) => {
 
   return (
     <animated.div className="ThemesReel" style={{
+      pointerEvents: 'none',
       position: 'fixed', top: 0, bottom: 0,
       transform: x.interpolate(transition)
     }}>
