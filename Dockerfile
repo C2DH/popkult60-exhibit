@@ -1,4 +1,4 @@
-FROM node:14.15.0-alpine as builder
+FROM node:15.12.0-alpine3.10 as builder
 
 ARG GIT_TAG
 ARG GIT_BRANCH
@@ -8,10 +8,10 @@ ARG PUBLIC_URL
 WORKDIR /app
 
 COPY package.json .
-COPY yarn.lock .
+# COPY yarn.lock .
 
-RUN apk add git
-
+# RUN apk add git
+RUN yarn cache clean
 RUN yarn install
 
 COPY public ./public
