@@ -1,0 +1,86 @@
+.MagicObject{
+  cursor: pointer;
+  pointer-events: auto;
+  will-change: transform;
+  transition: transform .26s ease-in-out;
+
+  &::before{
+    position: absolute;
+    content: ' ';
+    border: .5rem solid var(--white);
+    height: 1rem;
+    width: 1rem;
+    left: 50%;
+    margin-left: -.5rem;
+    top: -1.5rem;
+    border-radius: .5rem;
+    transition: border-color .26s ease-in-out ;
+    transform: scale(1);
+	  animation: pulse 1.2s infinite;
+  }
+
+  &.active{
+    transform: scale(1.05)
+  }
+  &.active::before{
+    border-color: var(--accent);
+  }
+}
+
+.MagicObject_shadow{
+  opacity: 0;
+  will-change: opacity;
+  transition: opacity .26s ease-in-out;
+  &.active{
+    opacity:1;
+  }
+}
+
+.MagicObject_image{
+  position: absolute;
+  top:0;
+  left: 0;
+  width:100%;
+}
+
+.MagicObjectRadio {
+  &::before{
+    animation-delay: 0.2s;
+  }
+  .st0{fill:#FFEACC;}
+  .st1{fill:#121821;}
+  .st2{fill:#F95421;}
+  .st3{fill:#EA5228;}
+}
+
+.MagicObjectPlatine {
+  &::before{
+    animation-delay: 0.3s;
+  }
+  .st0{fill:#FFEACC;}
+  .st1{fill:#121821;}
+  .st2{fill:#F95421;}
+  &.active{
+    transform: scale(1.15)
+  }
+}
+.MagicObjectTv::before{
+  animation-delay: 0.7s;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.05);
+		box-shadow: 0 0 0 0 #FFEACC;
+	}
+
+	50% {
+		transform: scale(1);
+		box-shadow: 0 0 0 5px #FFEACC;
+	}
+
+	100% {
+		transform: scale(0.05);
+		box-shadow: 0 0 0 0 #FFEACC;
+	}
+}
