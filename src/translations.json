@@ -3,6 +3,7 @@
     "translation": {
       "asNumber": "{{ n,2 }}",
       "navigationAbout": "About",
+      "navigationCollection": "Collection",
       "navigationHome": "/",
       "navigationTermsOfUse": "Terms of use",
       "pagesAppRouteLoadingTitle": "loading...",
@@ -37,6 +38,7 @@
     "translation": {
       "asNumber": "{{ n,2 }}",
       "navigationAbout": "About",
+      "navigationCollection": "Collection",
       "navigationHome": "/",
       "navigationTermsOfUse": "Terms of use",
       "pagesAppRouteLoadingTitle": "loading...",
@@ -69,6 +71,7 @@
     "translation": {
       "asNumber": "{{ n,2 }}",
       "navigationAbout": "About",
+      "navigationCollection": "Collection",
       "navigationHome": "/",
       "navigationTermsOfUse": "Terms of use",
       "pagesAppRouteLoadingTitle": "loading...",

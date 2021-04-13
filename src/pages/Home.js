@@ -1,19 +1,17 @@
 import React, { useEffect } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
 import { useCurrentWindowDimensions } from '../hooks'
+import '../styles/pages/Home.scss'
 import HomeRoom from '../components/HomeRoom'
-import HomeThemes from '../components/HomeThemes'
+import HomeThemesLoop from '../components/HomeThemesLoop'
 import { useStore } from '../store'
-import { useCachedStories } from 'react-miller'
+import { useStories } from '@c2dh/react-miller'
 
-
-let c = 0
 
 const Home = () => {
-  const { t, i18n } = useTranslation()
+  const { i18n } = useTranslation()
   const { width, height } = useCurrentWindowDimensions()
-  const [stories, pagination, { error }] = useCachedStories({
+  const [stories, pagination, { error }] = useStories({
     filters: {tags__slug: 'theme' }
   }, {
     language: i18n.language.split('-').join('_'),
@@ -21,26 +19,18 @@ const Home = () => {
   })
   useEffect(() => {
     useStore.setState({
-      backgroundColor: 'transparent',
-      logoReduced: false 
+      // var(--rich-black-FOGRA-29)
+      color: '#121821',
+      backgroundColor: 'var(--white)',
+      logoReduced: false
     });
   }, [])
-  c = c+1
-  if(c > 10) {
-   throw new Error('stop')
-  }
+
   console.info("Home", stories, pagination, error)
   return (
     <div className="Home">
     <HomeRoom width={width} height={height} />
-    <Container fluid>
-      <Row>
-        <Col>
-          <p>{t('pagesHomeSubheading')} {t('asNumber', {n: 15040.32456})}</p>
-        </Col>
-      </Row>
-    </Container>
-    <HomeThemes width={width} height={height} stepHeight={height/2} themes={[ 0, 1, 2, 3, 4 ]}/>
+    <HomeThemesLoop width={width} height={height} themes={stories || []}/>
     </div>
   )
 }

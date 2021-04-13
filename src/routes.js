@@ -4,39 +4,44 @@ import { Switch, Route, Redirect, useRouteMatch, useLocation } from "react-route
 import { QueryParamProvider } from 'use-query-params'
 import AppRouteLoading from './pages/AppRouteLoading'
 import { LanguageRoutePattern } from './constants'
+import { useCurrentWindowDimensions } from './hooks'
 
 /* Pages */
 const Home = lazy(() => import('./pages/Home'))
-const About = lazy(() => import('./pages/About'))
-const TermsOfUse = lazy(() => import('./pages/TermsOfUse'))
+const StaticPage = lazy(() => import('./pages/StaticPage'))
 const NotFound = lazy(() => import('./pages/NotFound'))
 const DocumentDetail = lazy(() => import('./pages/DocumentDetail'))
 const Collection = lazy(() => import('./pages/Collection'))
+const Story = lazy(() => import('./pages/Story'))
 
 /* Pages routing by language */
 const LangRoutes = () => {
   const { path } = useRouteMatch()
   // const publicPath = `${process.env.PUBLIC_URL || ''}${path}`
   // console.info('publicPath', publicPath)
+  const { width, height } = useCurrentWindowDimensions()
   return (
     <Switch>
       <Route exact path={`${path}`}>
-        <Home />
-      </Route>
-      <Route exact path={`${path}/about`}>
-        <About />
+        <Home width={width} height={height} />
       </Route>
       <Route exact path={`${path}/loading`}>
-        <AppRouteLoading />
+        <AppRouteLoading width={width} height={height} />
       </Route>
       <Route exact path={`${path}/about`}>
-        <TermsOfUse />
+        <StaticPage id='about' width={width} height={height} />
+      </Route>
+      <Route exact path={`${path}/terms-of-use`}>
+        <StaticPage id='terms-of-use' width={width} height={height} />
       </Route>
       <Route exact path={`${path}/doc/:id`}>
-        <DocumentDetail />
+        <DocumentDetail width={width} height={height} />
+      </Route>
+      <Route exact path={`${path}/story/:id`}>
+        <Story width={width} height={height} />
       </Route>
       <Route exact path={`${path}/collection`}>
-        <Collection />
+        <Collection width={width} height={height} />
       </Route>
       <Route path={`${path}*`}>
         <NotFound />
