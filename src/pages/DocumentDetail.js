@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useCachedDocument } from 'react-miller'
+import { useDocument } from '@c2dh/react-miller'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft } from 'react-feather'
 import DocumentViewer from '../components/DocumentViewer'
@@ -14,7 +14,7 @@ const DocumentDetail = () => {
   const { id } = useParams()
   const { t, i18n } = useTranslation()
   const { width, height } = useCurrentWindowDimensions()
-  const [doc, {pending}] = useCachedDocument(id, {
+  const [doc, {pending}] = useDocument(id, {
     language: i18n.language,
   })
 
