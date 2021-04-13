@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react'
 import { useSpring, animated } from 'react-spring'
-import { useStore } from '../store'
 const yTranslate = (y) => `translate3d(0px, ${y}px, 0px)`
 
 const yInitial = -40
 
-const Logo = ({ width=600, height=200, id='logo', strokeColor='#1F7E77', fillColor='var(--gray)' }) => {
-  const logoReduced = useStore((state) => state.logoReduced);
-
-  const [{ color }, set] = useSpring(() => ({ color: strokeColor, y: yInitial }));
+const Logo = ({
+  width=600, height=200,
+  id='logo',
+  logoColor='#1F7E77',
+  fillColor='transparent',
+  logoReduced=true,
+  logoActiveColor='#cc1234'
+}) => {
+  const [{ color }, set] = useSpring(() => ({ color: logoColor, y: yInitial }));
   const [{ y }, setY] = useSpring(() => ({ y: logoReduced ? -height/2 : yInitial }));
 
   useEffect(() => {
@@ -18,11 +22,11 @@ const Logo = ({ width=600, height=200, id='logo', strokeColor='#1F7E77', fillCol
   return (
     <animated.div className="Logo" id={id}
       onMouseEnter={() => {
-        set({ color: '#121821' })
+        set({ color: logoActiveColor })
         setY({ y: yInitial })
       }}
       onMouseLeave={() => {
-        set({ color: strokeColor })
+        set({ color: logoColor })
         setY({ y: logoReduced ? -height/2: yInitial })
       }}
       style={{

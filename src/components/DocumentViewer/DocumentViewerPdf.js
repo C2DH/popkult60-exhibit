@@ -7,7 +7,7 @@ import {
   ZoomOut,
   Minimize2,
 } from 'react-feather'
-import '../styles/components/DocumentViewerPdf.scss'
+import '../../styles/components/DocumentViewerPdf.scss'
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
 

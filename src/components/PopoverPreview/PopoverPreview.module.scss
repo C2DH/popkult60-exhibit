@@ -1,0 +1,30 @@
+.popoverContainer {
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+  background: transparent;
+  z-index: 10;
+}
+
+.popover {
+  background: var(--dark);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 15px;
+  // box-shadow: 0 3px 19px 8px rgba(0, 0, 0, 0.5);
+  width: 300px;
+  height: 300px;
+  // border: 1px solid var(--white)
+}
+
+.popoverImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+// .label::before {
+//   content: '─ ';
+// }

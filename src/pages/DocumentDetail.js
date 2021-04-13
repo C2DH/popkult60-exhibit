@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { useCachedDocument } from 'react-miller'
+import { useDocument } from '@c2dh/react-miller'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft } from 'react-feather'
 import DocumentViewer from '../components/DocumentViewer'
@@ -14,13 +14,13 @@ const DocumentDetail = () => {
   const { id } = useParams()
   const { t, i18n } = useTranslation()
   const { width, height } = useCurrentWindowDimensions()
-  const [doc, {pending}] = useCachedDocument(id, {
+  const [doc, {pending}] = useDocument(id, {
     language: i18n.language,
   })
 
   useEffect(() => {
     useStore.setState({
-      backgroundColor: 'var(--blanched-almond)',
+      backgroundColor: 'var(--rich-black-FOGRA-29)',
       logoReduced: true
     });
   }, [])
@@ -30,11 +30,11 @@ const DocumentDetail = () => {
       className="DocumentDetail position-relative h-100"
     >
       <LangLink
-        to="/explorations/all"
+        to="/collection"
         className="DocumentDetail_close d-flex align-items-center"
       >
-        <ArrowLeft />
-        <span className="ml-2 text-uppercase font-weight-bold">
+        <ArrowLeft color="var(--white)"/>
+        <span className="ml-2 text-uppercase text-white font-weight-bold">
           {t('all resources')}
         </span>
       </LangLink>

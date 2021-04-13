@@ -13,11 +13,12 @@ import {
 
 const getLanguage = () => {
   const langMatch = matchPath(window.location.pathname, {
-    path: LanguageRoutePattern,
+    path: [process.env.PUBLIC_URL || '', LanguageRoutePattern].join(''),
     exact: false,
     strict: false,
   })
   let startLangShort = langMatch?.params?.lang
+  console.info('startLangShort', startLangShort, LanguageCodes)
   if (!startLangShort || !LanguageCodes.includes(startLangShort)) {
     // get default short language from browser
     const browserLangsShort = window.navigator?.languages ?? []
