@@ -11,24 +11,30 @@ import {
   CollectionRoute,
   AboutRoute,
   TermsOfUseRoute,
+  Languages,
 } from '../constants'
 
-const HeaderLink = ({ to, children, active, activeColor, color }) => (
-  <LangLink className={`Header_HeaderLink ${active ? 'active' : ''}`} to={to} style={{
-    backgroundColor: active
-      ? activeColor
-      : 'transparent',
-    color: active
-      ? 'var(--white)'
-      : color,
-    borderRadius: '1rem',
-  }}>{children}</LangLink>
-)
+const HeaderLink = ({ to, children, active, activeColor, color, onClick, forceLanguage=null, }) => {
+  return (
+    <LangLink className={`Header_HeaderLink ${active ? 'active' : ''}`}
+      forceLanguage={forceLanguage}
+      onClick={onClick}
+      to={to} style={{
+      backgroundColor: active
+        ? activeColor
+        : 'transparent',
+      color: active
+        ? 'var(--white)'
+        : color,
+      borderRadius: '1rem',
+    }}>{children}</LangLink>
+  )
+}
 
 const Header = () => {
   const location = useLocation()
   const { pathname } = location
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [activeRoute, setActiveRoute] = useState('')
   const { color, activeColor, logoColor, logoActiveColor, logoReduced } = useStore((state) => state);
   useEffect(() => {
@@ -66,11 +72,19 @@ const Header = () => {
           </Col>
           <Col>
             <div className="Header_menuGroup d-flex justify-content-end">
-            {[AboutRoute, TermsOfUseRoute].map((d,i) => (
+            {[AboutRoute].map((d,i) => (
               <HeaderLink to={d.to} key={i}
                 active={activeRoute === d.to}
                 {... {color, activeColor}}
               >{t(d.label)}</HeaderLink>
+            ))}
+            {Languages.map((lang, i) => (
+              <HeaderLink key={i} forceLanguage={lang.split('-')[0]} to={activeRoute}
+                active={lang === i18n.language}
+                {... {color, activeColor}}
+                onClick={(e) => {
+                  i18n.changeLanguage(lang)
+                }}>{lang.split('-')[0]}</HeaderLink>
             ))}
             </div>
           </Col>
