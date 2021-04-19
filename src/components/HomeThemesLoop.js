@@ -1,57 +1,68 @@
 import React, {useEffect, useState} from 'react'
+import { useTransition, animated } from 'react-spring'
 
-const VoidFunction = () => {
-  console.warn('empty trigger')
+import '../styles/components/HomeThemesLoop.scss'
+
+const HomeThemeItem = ({ style, theme }) => {
+  return (
+    <animated.div className="HomeThemeItem" style={{ ...style }}>
+      <><h1 className="text-center">
+        <span className="bg-white p-1">{theme?.data?.title || theme?.slug.split('-').join(' ')}
+        </span>
+
+      </h1>
+      <h2><span className="bg-accent p-1">{theme?.data?.abstract}
+      </span></h2>
+      </>
+    </animated.div>
+  )
 }
 
+const HomeThemesLoop = ({ themes=[], height=0, width=0, stepHeight=0, themeSelected, onThemeChanged}) => {
+  const [activeStep, setActiveStep] = useState({
+    direction: 'down',
+    idx: -1
+  })
 
-const HomeThemesLoop = ({ themes=[], height=0, width=0, stepHeight=0, onThemeChanged=VoidFunction}) => {
-  const [position, setPosition] = useState({ x:0, y: 0, yCycle: 0})
-  const themeHeight = height / 2
-  const themesHeight = themes.length * themeHeight
+  const transitions = useTransition(activeStep.idx, p => p, {
+    from: { opacity: 0, transform: `translate3d(0,${activeStep.direction === 'down' ? '-50' : '100'}%,0)` },
+    enter: { opacity: 1, transform: `translate3d(0,0%,0)` },
+    leave: { opacity: 0, transform: `translate3d(0,${activeStep.direction === 'down' ? '100' : '-50'}%,0)` },
+  })
+
   useEffect(() => {
-    const handleWheel = (e) => {
-      const yCycle = (position.y + e.deltaY) % themesHeight
-
-      console.info('@onWheel', yCycle)
-      // current thems higllighted
-      // position.y + e.deltaY
-      //
-      setPosition({
-        x: position.x + e.deltaX,
-        y: position.y + e.deltaY,
-        yCycle,
-      })
+    if (Array.isArray(themes) && themeSelected) {
+      const idx = themes.findIndex(d => d.slug === themeSelected)
+      if (idx !== -1 && idx !== activeStep.idx) {
+        setActiveStep({ idx, direction: idx < activeStep.idx ? 'up' : 'down' })
+      }
     }
-    window.addEventListener('wheel', handleWheel);
-    // cleanup this component
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-    };
-  }, [position.x, position.y, themesHeight]);
+  }, [themes, themeSelected, activeStep])
+
   return (
     <div className="HomeThemesLoop position-relative" style={{
       height, width
     }}>
-      <div className="position-absolute h-100 w-100" style={{ overflow: 'scroll'}}>
-        {themes.map((d,i) => {
+      <div className="position-absolute" style={{zIndex:10, border: '1px solid red', width: width/2, height: height/2, top: (height - width/2) / 2, left: width/4}}>
+        {transitions.map(({ item, props, key }) => {
+          if (item > -1) {
+            return <HomeThemeItem key={key} style={props} theme={themes[item]}/>
+          }
           return (
-            <div key={i} style={{
-              position: 'absolute',
-              zIndex: 100,
-              top: i * themeHeight,
-              width,
-              height: height/2,
-              // border: '1px solid black',
-              transform: `translate3d(0, ${-position.yCycle}px, 0)`
-            }}>
-              <div className="d-flex align-items-center justify-content-center h-100 w-100">
-                <h2 className="display-4">{d.data.title}</h2>
-              </div>
-            </div>
+            <p key={key} className="text-center font-weight-bold">
+              <span className="bg-white p-2">
+                To start, please pick one object in this room ...
+              </span>
+            </p>
           )
         })}
+        <div className="position-absolute" style={{
+          bottom: -(height - width/2) / 4
+        }}>
+          Abstract and author and tag
+        </div>
       </div>
+
     </div>
   )
 }

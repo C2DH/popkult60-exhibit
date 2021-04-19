@@ -7,7 +7,7 @@
   &::before{
     position: absolute;
     content: ' ';
-    border: .5rem solid var(--white);
+    border: .5rem solid var(--dark);
     height: 1rem;
     width: 1rem;
     left: 50%;
@@ -16,7 +16,6 @@
     border-radius: .5rem;
     transition: border-color .26s ease-in-out ;
     transform: scale(1);
-	  animation: pulse 1.2s infinite;
   }
 
   &.active{
@@ -24,6 +23,8 @@
   }
   &.active::before{
     border-color: var(--accent);
+    transform: scale(1);
+	  animation: pulse 1.2s infinite;
   }
 }
 

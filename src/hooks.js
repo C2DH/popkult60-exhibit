@@ -44,6 +44,9 @@ export function useCurrentWindowDimensions() {
 export function useMousePosition() {
   const [mousePosition, setMousePosition] = useState({ x: null, y: null, isValid: false });
   const updateMousePosition = ev => {
+    if (!ev) {
+      return
+    }
     setMousePosition({ x: ev.clientX, y: ev.clientY, isValid: true });
   };
   useEffect(() => {
