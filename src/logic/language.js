@@ -74,7 +74,7 @@ function namespacePath(path, lang) {
   return pathWithLang
 }
 
-const useToWithLang = (to) => {
+const useToWithLang = (to, forceLanguage) => {
   const { i18n } = useTranslation()
   let { lang } = useParams()
   if (!lang) {
@@ -82,7 +82,9 @@ const useToWithLang = (to) => {
     // fallback to current i81n language ...
     lang = i18n.language.split('-')[0]
   }
-
+  if (forceLanguage) {
+    lang = forceLanguage
+  }
   if (typeof to === 'string') {
     return namespacePath(to, lang)
   } else {
