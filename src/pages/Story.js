@@ -8,6 +8,7 @@ import { useCurrentWindowDimensions } from '../hooks'
 import { useStore } from '../store'
 import StoryModules from '../components/StoryModule/StoryModules'
 import MapboxWrapper from '../components/MapboxWrapper'
+import { Themes } from '../constants'
 
 const calc = (ratio=1.5) => o => `translateY(${-o * ratio}px)`;
 
@@ -40,12 +41,19 @@ const Story = () => {
   const [bbox, setBbox] = useState([])
   const ref = useRef()
 
-  const [story, { pending }] = useStory(id, {
+  const [story, { pending, error }] = useStory(id, {
     parser: 'yaml',
   }, {
     language: i18n.language.replace('-','_'),
     cached: true,
   })
+
+  const theme = useMemo(() => {
+    if (story) {
+      return Themes.find(d => d.slug === story.slug)
+    }
+    return null
+  }, [story])
   // as soon as story is loaded, load documents
   const storyModules = useMemo(() => story?.contents?.modules || [], [
     story?.contents?.modules
@@ -58,9 +66,9 @@ const Story = () => {
   };
 
   const handleStoryModuleChange = ({ idx }) => {
-    console.info('@handleStoryModuleChange idx:', idx);
-    if(BBoxes[idx]) {
-      setBbox(BBoxes[idx])
+    if(theme && theme.bboxes && theme.bboxes[idx]) {
+      console.info('@handleStoryModuleChange idx:', idx);
+      setBbox(theme.bboxes[idx])
     }
   }
 
@@ -79,6 +87,7 @@ const Story = () => {
       color: '#121821',
     });
   }, [])
+  console.info('Rendering', story,error)
   return (
     <div className="Story position-relative" ref={ref} style={{minHeight: height, width}}>
       <animated.div className="Story_cover position-absolute w-100 bg-accent" style={{
@@ -90,9 +99,11 @@ const Story = () => {
         <Container className="d-flex h-100 w-100 align-items-center" >
           <div className="w-100">
             <div className="Story_tags text-center capitalize mb-5 text-white">{(story?.tags || []).filter(d=> d.category==='keyword').map(tag => (<p key={tag.slug}>{tag.name}</p>))}</div>
-            <div className="Story_authors text-center mb-5 text-white font-weight-bold">
-              Maude Williams
-            </div>
+            {(story?.authors || []).map((author, i) => (
+              <div key={i} className="Story_authors text-center mb-5 text-white font-weight-bold">
+                {author.fullname}
+              </div>
+            ))}
             <h1 className="display-2 text-center">{story?.data?.title || '...'}</h1>
           </div>
         </Container>
@@ -111,8 +122,8 @@ const Story = () => {
         </Row>
       </Container>
       </div>
-      {story
-        ? <MapboxWrapper fixed height={height} width={width/2} left={width/2} initialLng={BBoxes[0][0][0]} initialLat={BBoxes[0][0][1]} bbox={bbox}/>
+      {theme?.bboxes
+        ? <MapboxWrapper fixed height={height} width={width} left={0} paddingLeft={width/2} initialLng={theme?.bboxes[0][0][0]} initialLat={theme?.bboxes[0][0][1]} bbox={bbox}/>
         : null
       }
       <StoryModules onChange={handleStoryModuleChange} height={height} width={width} storyModules={storyModules}/>

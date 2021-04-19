@@ -20,6 +20,10 @@ const MapboxWrapper = ({
   //   [43.50585, 5.615985]
   // ]);
   bbox=[],
+  paddingTop=10,
+  paddingRight=10,
+  paddingBottom=10,
+  paddingLeft=10,
 }) => {
   const mapContainer = useRef();
   const map = useRef(null);
@@ -47,10 +51,10 @@ const MapboxWrapper = ({
   useEffect(() => {
     if (bbox.length && map.current) {
       map.current.fitBounds(bbox, {
-        padding: 10,
+        padding: {top: paddingTop, left: paddingLeft, right: paddingRight, bottom: paddingBottom},
       });
     }
-  }, [bbox])
+  }, [bbox, paddingTop, paddingLeft, paddingRight, paddingBottom])
 
   return (
     <div className="MapboxWrapper" ref={mapContainer} style={{
