@@ -1,0 +1,40 @@
+
+.StoryModuleTextGallery  {
+  .slick-slider{
+    position: relative;
+    background: green;
+  }
+  .slick-track{
+    position: absolute;
+
+  }
+  .slick-slide{
+    position: relative;
+    display: inline-block;
+  }
+
+  .slick-arrow{
+    display: none !important;
+  }
+  ul.slick-dots{
+    padding-left: 50px;
+    position: absolute;
+    top: -50px;
+    li{
+      display: inline-block;
+    }
+  }
+  .slick-list{
+    height: 100%;
+    width: 100%;
+    overflow:hidden;
+  }
+}
+
+.StoryModuleTextGallery_sliderWrapper{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
