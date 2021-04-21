@@ -64,22 +64,25 @@ export function useMousePosition() {
   <div ref={ref}>
   ```
 */
-export const useBoundingClientRect = () => {
+export const useBoundingClientRect = ({ accurate=false } = {}) => {
   const ref = useRef();
   const [bbox, setBbox] = useState({
-    width: 0, height: 0, windowDimensions: '0x0'
+    width: 0, height: 0, windowDimensions: '0x0',
+    x: 0, y: 0,
+    top: 0, right: 0, bottom: 0, left: 0,
   });
   const setCurrentBoundingClientRect = () => {
     const boundingClientRect = ref && ref.current
       ? ref.current.getBoundingClientRect()
-      : { width: 0, height: 0, windowDimensions: '0x0' }
-    const windowDimensions = `${boundingClientRect.width}x${boundingClientRect.height}`
+      : { width: 0, height: 0, x: 0, y: 0, windowDimensions: '0x0' }
+    const windowDimensions = accurate
+      ? JSON.stringify(boundingClientRect)
+      : `${boundingClientRect.width}x${boundingClientRect.height}`
     if (windowDimensions !== bbox.windowDimensions) {
       // extract one dimension by one dimension, the only way
       // as the result of el.getBoundingClientRect() returns a special object
       // of type ClientRect (or DomRect apparently)
       const {top, right, bottom, left, width, height, x, y} = boundingClientRect
-      console.info(bbox.windowDimensions)
       setBbox({
         top, right, bottom, left, width, height, x, y,
         windowDimensions,
