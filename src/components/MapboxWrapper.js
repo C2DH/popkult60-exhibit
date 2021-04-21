@@ -15,6 +15,7 @@ const MapboxWrapper = ({
   zIndex=-1,
   top = 0,
   left = 0,
+  // bbox will allow to fitBounds
   // map.fitBounds([
   //   [32.958984, -5.353521],
   //   [43.50585, 5.615985]
