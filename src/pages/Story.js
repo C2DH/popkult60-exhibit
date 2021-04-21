@@ -12,26 +12,26 @@ import { Themes } from '../constants'
 
 const calc = (ratio=1.5) => o => `translateY(${-o * ratio}px)`;
 
-const BBoxes = [
-  // "Indoxhine"
-  [[97.030692,7.998675],[111.861420,24.773545]],
-  // France
-  [[-5.182521,41.305177],[9.752727,51.500078]],
-  // Seine
-  [[1.280143,47.877459],[4.001319,49.597010]],
-  // kenya
-  [
-    [32.958984, -5.353521], [43.50585, 5.615985]
-  ],
-  // France
-  [
-    [-54.5247541978, 2.05338918702], [9.56001631027, 51.1485061713]
-  ],
-  // Italy
-  [
-    [6.7499552751, 36.619987291], [18.4802470232, 47.1153931748]
-  ]
-]
+// const BBoxes = [
+//   // "Indoxhine"
+//   [[97.030692,7.998675],[111.861420,24.773545]],
+//   // France
+//   [[-5.182521,41.305177],[9.752727,51.500078]],
+//   // Seine
+//   [[1.280143,47.877459],[4.001319,49.597010]],
+//   // kenya
+//   [
+//     [32.958984, -5.353521], [43.50585, 5.615985]
+//   ],
+//   // France
+//   [
+//     [-54.5247541978, 2.05338918702], [9.56001631027, 51.1485061713]
+//   ],
+//   // Italy
+//   [
+//     [6.7499552751, 36.619987291], [18.4802470232, 47.1153931748]
+//   ]
+// ]
 
 const Story = () => {
   const { id } = useParams()
@@ -108,7 +108,7 @@ const Story = () => {
           </div>
         </Container>
       </animated.div>
-      <div style={{paddingTop: height*.5}}>
+      <div style={{paddingTop: height}}>
       <Container >
         <Row>
         <Col {...{md: {span: 8, offset:2}}}>
@@ -126,7 +126,10 @@ const Story = () => {
         ? <MapboxWrapper fixed height={height} width={width} left={0} paddingLeft={width/2} initialLng={theme?.bboxes[0][0][0]} initialLat={theme?.bboxes[0][0][1]} bbox={bbox}/>
         : null
       }
-      <StoryModules onChange={handleStoryModuleChange} height={height} width={width} storyModules={storyModules}/>
+      <StoryModules onChange={handleStoryModuleChange} height={height} width={width}
+        storyModules={storyModules}
+        storyDocuments={story?.documents || []}
+      />
     </div>
   )
 }
