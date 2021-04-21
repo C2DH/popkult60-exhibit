@@ -1,5 +1,10 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
+import StoryModuleNotImplemented from './StoryModuleNotImplemented'
+
+import StoryModuleTextObject from './StoryModuleTextObject'
+import StoryModuleText from './StoryModuleText'
+import StoryModuleTextGallery from './StoryModuleTextGallery'
 //
 // const DocumentViewerPdf = lazy(() => import('./DocumentViewerPdf'))
 // const DocumentViewerImage = lazy(() => import('./DocumentViewerImage'))
@@ -9,6 +14,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 //   'image': DocumentViewerImage,
 //   'video': DocumentViewerVideo,
 // }
+import '../../styles/components/StoryModule.scss'
 
 
 const StoryModule = ({
@@ -16,8 +22,28 @@ const StoryModule = ({
   height = 0,
   inViewport = false,
   progress=0.0,
-  debug = false
+  debug = false,
+  storyDocuments=[]
 }) => {
+  // console.info('StoryModule', mod, storyDocuments)
+  const documentsIndex = storyDocuments.reduce((acc, d) => {
+    acc[d.document_id] = d
+    return acc
+  }, {})
+
+  let documents = []
+  let StoryModuleComponent = StoryModuleNotImplemented
+
+  if (mod.module === 'text_object') {
+    StoryModuleComponent = StoryModuleTextObject
+    documents = [documentsIndex[mod.object.id]]
+  } else if (mod.module === 'text') {
+    StoryModuleComponent = StoryModuleText
+  } else if (mod.module === 'text_gallery') {
+    StoryModuleComponent = StoryModuleTextGallery
+    documents = mod.gallery.objects.map(d => documentsIndex[d.id])
+  }
+
   return (
     <div className="StoryModule my-5 d-flex align-items-center " style={{
       minHeight: height*.75
@@ -33,7 +59,7 @@ const StoryModule = ({
               )
               : null
             }
-            <div className="bg-white p-5">{mod?.text?.content}</div>
+            <StoryModuleComponent mod={mod} documents={documents}/>
           </Col>
         </Row>
       </Container>

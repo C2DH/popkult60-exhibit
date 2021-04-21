@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import StoryModule from './StoryModule'
 
 
-const StoryModules = ({ width=0, height=0, storyModules=[], onChange }) => {
+const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], onChange }) => {
   const [scrollingSteps, setScrollingSteps] = useState({
     steps: [],
     current: null,
@@ -70,19 +70,19 @@ const StoryModules = ({ width=0, height=0, storyModules=[], onChange }) => {
   }, [width, height, storyModules])
 
   return (
-    <>
+    <div style={{ marginTop: window.innerHeight / 4, }}>
       {storyModules.map((d, i) => {
-        let stepProgress = 0.0
+        // let stepProgress = 0.0
         let stepInViewport = false
         if (scrollingSteps.steps.length && scrollingSteps.steps[i]) {
-          stepProgress = scrollingSteps.steps[i].progress
+          // stepProgress = scrollingSteps.steps[i].progress
           stepInViewport = scrollingSteps.steps[i].inViewport
         }
         return (
-          <StoryModule key={i} mod={d} height={height} progress={stepProgress} inViewport={stepInViewport}/>
+          <StoryModule key={i} mod={d} height={height} inViewport={stepInViewport} storyDocuments={storyDocuments}/>
         )
       })}
-    </>
+    </div>
   )
 }
 

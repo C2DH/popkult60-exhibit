@@ -16,7 +16,11 @@ const StoryModules = ({ width=0, height=0, storyModules=[], onChanged }) => {
   }
 
   return (
-    <div className="StoryModules" style={{ minHeight: height, marginTop: height/2 }}>
+    <div className="StoryModules" style={{
+      minHeight: height,
+      marginTop: height/2,
+      // paddingBottom: height/2
+    }}>
       <Scrollama
           onStepEnter={onStepEnter}
           offset={.5}
