@@ -11,7 +11,7 @@ const HomeThemeItem = ({ style, theme }) => {
         </span>
 
       </h1>
-      <h2><span className="bg-accent p-1">{theme?.data?.abstract}
+      <h2><span className="bg-accent text-white p-1">{theme?.data?.abstract}
       </span></h2>
       </>
     </animated.div>
