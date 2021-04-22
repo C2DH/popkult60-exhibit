@@ -8,11 +8,11 @@ const DocumentViewerVideo = ({ doc, height}) => {
     return null
   }
   return (
-    <div className="DocumentViewerVideo" style={{ backgroundColor: 'black', height, paddingTop: 100 }}>
+    <div className="DocumentViewerVideo" style={{ backgroundColor: 'black', height: height, paddingTop: 100 }}>
       <Video
         url={videoUrl}
         width="auto"
-        height="auto"
+        height={height}
         tracks={doc.data.subtitles}
       />
     </div>

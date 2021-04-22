@@ -259,7 +259,7 @@ function Video(
           onProgress && onProgress(progress)
         }}
         width={null}
-        height={null}
+        height={height}
         playsinline
         config={{
           file: {
