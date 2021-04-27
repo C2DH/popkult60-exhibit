@@ -2,7 +2,8 @@ import React from 'react'
 import Slider from 'react-slick'
 import { get } from 'lodash'
 import TextContent from '../TextContent'
-// import ObjectContent from '../ObjectContent'
+import { Container, Row, Col} from 'react-bootstrap'
+import { getModuleLayout } from '../../logic/layout'
 import { useBoundingClientRect } from '../../hooks'
 
 const StoryModuleTextGalleryItem = ({ index , data={}, type, ...props }) => {
@@ -17,20 +18,22 @@ const StoryModuleTextGalleryItem = ({ index , data={}, type, ...props }) => {
             objectFit: 'contain'
           }}
         />
-        {type}
+        {data.title}
       </div>
     );
 }
 
-const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings }) => {
-  const layout = get(mod, "layout", "text-gallery")
+const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings, withMap=false, num=0 }) => {
+  // const layout = get(mod, "layout", "text-gallery")
+  console.info('ModuleText module:', mod)
+  const layout = getModuleLayout(mod, withMap)
   const SliderSettings = {
       dots: true,
       infinite: false,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
-      initialSlide: documents.length - 1,
+      // initialSlide: documents.length - 1,
       variableWidth: true,
       // ...settings,
     };
@@ -40,10 +43,15 @@ const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings }) 
   const [{ left }, ref] = useBoundingClientRect({ accurate: true})
 
   return (
-    <div className="StoryModuleTextGallery">
-      <div className="">
-        <TextContent textConfig={mod.text} />
-      </div>
+    <div className={`StoryModuleTextGallery ${withMap ? 'w-50' : 'w-100'}`}>
+      <Container>
+        <Row>
+          <Col {...layout.cols[0]}>
+            <div className="StoryModule_num">{num}</div>
+            <TextContent textConfig={mod.text} />
+          </Col>
+        </Row>
+      </Container>
       <div ref={ref} className="Deck position-relative w-100" style={{
         height: maxAvailableSlideHeight  + 100
       }}>

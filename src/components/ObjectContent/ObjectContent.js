@@ -1,4 +1,5 @@
 import ObjectContentImage from './ObjectContentImage'
+import DocumentViewerVideo from '../DocumentViewer/DocumentViewerVideo'
 import '../../styles/components/ObjectContent.scss'
 import { get } from 'lodash'
 
@@ -31,6 +32,11 @@ const ObjectContent = ({ objectConfig, document, goBig,
             height
           }}
         />
+      )}
+      {objectConfig.type === "video" && (
+        <div className="text-white">
+          <DocumentViewerVideo doc={document} height={availableHeight} />
+        </div>
       )}
       {objectConfig.caption && (
           <div className="ObjectContent_captionWrapper">

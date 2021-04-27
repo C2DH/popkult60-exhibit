@@ -37,7 +37,7 @@ export const BBoxClermontFerrand	=[[2.367554,45.432190],[3.810883,45.996008]]
 export const BBoxMulheim	=[[6.663895,51.338334],[7.076569,51.496775]]
 
 export const ThemeMagPilote = { slug: 'the-asterix-phenomenon' }
-export const ThemeMagTv = { slug: 'magTv' }
+export const ThemeMagTv = { slug: 'childrens-television-series' }
 export const ThemePlatine = {
   slug: 'le-deserteur-de-boris-vian',
   bboxes: [
@@ -53,7 +53,7 @@ export const ThemePlatine = {
     BBoxMulheim
   ],
 }
-export const ThemePoster = { slug: 'poster' }
+export const ThemePoster = { slug: 'jugendmedien-ensemble-europa' }
 export const ThemeRadio = {
   slug: 'radio-luxembourg',
   bboxes: [
@@ -71,8 +71,8 @@ export const ThemeRadio = {
     BBoxVillaLouvigny
   ]
 }
-export const ThemeRetro = { slug: 'retro' }
-export const ThemeTv = { slug: 'akk-theme' }
+export const ThemeRetro = { slug: 'des-excursions-du-dimanche-a-la-coupe-du-monde-1' }
+export const ThemeTv = { slug: 'german-and-french-television-entertainment' }
 
 export const Themes = [
   ThemeMagPilote, ThemeMagTv, ThemePlatine,

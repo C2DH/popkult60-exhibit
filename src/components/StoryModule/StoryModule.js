@@ -1,9 +1,9 @@
 import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
 import StoryModuleNotImplemented from './StoryModuleNotImplemented'
 
 import StoryModuleTextObject from './StoryModuleTextObject'
 import StoryModuleText from './StoryModuleText'
+import StoryModuleObject from './StoryModuleObject'
 import StoryModuleTextGallery from './StoryModuleTextGallery'
 //
 // const DocumentViewerPdf = lazy(() => import('./DocumentViewerPdf'))
@@ -16,14 +16,16 @@ import StoryModuleTextGallery from './StoryModuleTextGallery'
 // }
 import '../../styles/components/StoryModule.scss'
 
-
 const StoryModule = ({
   mod = {},
   height = 0,
+  width=0,
   inViewport = false,
   progress=0.0,
   debug = false,
-  storyDocuments=[]
+  storyDocuments=[],
+  withMap = false,
+  num = 0,
 }) => {
   // console.info('StoryModule', mod, storyDocuments)
   const documentsIndex = storyDocuments.reduce((acc, d) => {
@@ -33,38 +35,61 @@ const StoryModule = ({
 
   let documents = []
   let StoryModuleComponent = StoryModuleNotImplemented
-
+  let withFullBackground = false
+  // let StoryModuleBackgroundComponent = null
   if (mod.module === 'text_object') {
+    if (mod.object?.type === 'video') {
+      withFullBackground = true
+    }
     StoryModuleComponent = StoryModuleTextObject
     documents = [documentsIndex[mod.object.id]]
+  } else if (mod.module === 'object') {
+    StoryModuleComponent = StoryModuleObject
+    documents = [documentsIndex[mod.id]]
+    withFullBackground = true
   } else if (mod.module === 'text') {
     StoryModuleComponent = StoryModuleText
   } else if (mod.module === 'text_gallery') {
     StoryModuleComponent = StoryModuleTextGallery
+    withFullBackground = true
     documents = mod.gallery.objects.map(d => documentsIndex[d.id])
   }
 
   return (
-    <div className="StoryModule my-5 d-flex align-items-center " style={{
-      minHeight: height*.75
+    <div className={`StoryModule my-5 d-flex align-items-center ${inViewport ? 'active' : '' }`} style={{
+      minHeight: withMap
+        ? height*.75
+        : withFullBackground
+          ? height
+          : 'auto',
     }}>
-      <Container >
-        <Row>
-          <Col md={{span:6}} >
-            {debug
-              ? (
-                <>
-                  <b>{inViewport ? 'visible':'invisible'}</b> {progress}<br/>
-                </>
-              )
-              : null
-            }
-            <StoryModuleComponent mod={mod} documents={documents}/>
-          </Col>
-        </Row>
-      </Container>
+      <StoryModuleComponent num={num} mod={mod} documents={documents} withMap={withMap} height={height}/>
     </div>
   )
 }
 
 export default React.memo(StoryModule)
+
+// {withMap
+//   ? (
+//     <Container >
+//       <Row>
+//         <Col {...bootstrapColumnLayout}>
+//           {debug
+//             ? (
+//               <>
+//                 <b>{inViewport ? 'visible':'invisible'}</b> {progress}<br/>
+//               </>
+//             )
+//             : null
+//           }
+//           <StoryModuleComponent mod={mod} documents={documents}/>
+//         </Col>
+//       </Row>
+//     </Container>
+//     )
+//   :
+//     (
+//       <StoryModuleComponent mod={mod} documents={documents} withMap={withMap}/>
+//     )
+// }
