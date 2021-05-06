@@ -53,9 +53,10 @@ const Header = () => {
         <Row>
           <Col>
             <Logo id="logo"
-              logoReduced={logoReduced}
+              logoReduced={activeRoute !== '/'}
               logoColor={logoColor}
               logoActiveColor={logoActiveColor}
+              width={activeRoute === '/' ? 450 : 250}
             />
           </Col>
           <Col md={{span:4}}>

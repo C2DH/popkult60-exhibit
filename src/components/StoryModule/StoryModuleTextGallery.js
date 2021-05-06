@@ -5,40 +5,22 @@ import TextContent from '../TextContent'
 import { Container, Row, Col} from 'react-bootstrap'
 import { getModuleLayout } from '../../logic/layout'
 import { useBoundingClientRect } from '../../hooks'
+import StoryModuleTextGalleryItem from './StoryModuleTextGalleryItem'
 
-const StoryModuleTextGalleryItem = ({ index , data={}, type, ...props }) => {
-  return (
-    <div {...props} className="p-1">
-        <img
-          alt={data.title ? data.title : ""}
-          src={data.resolutions.medium.url}
-          style={{
-            height: '100%',
-            width: '100%',
-            objectFit: 'contain'
-          }}
-        />
-        {data.title}
-      </div>
-    );
-}
 
 const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings, withMap=false, num=0 }) => {
-  // const layout = get(mod, "layout", "text-gallery")
-  console.info('ModuleText module:', mod)
   const layout = getModuleLayout(mod, withMap)
+
   const SliderSettings = {
-      dots: true,
-      infinite: false,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      // initialSlide: documents.length - 1,
-      variableWidth: true,
-      // ...settings,
-    };
-  // [...]
-  // console.info('StoryModuleTextGallery layout:', layout, mod, SliderSettings.initialSlide)
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // initialSlide: documents.length - 1,
+    variableWidth: true,
+    // ...settings,
+  };
   const maxAvailableSlideHeight =  window.innerHeight / 2
   const [{ left }, ref] = useBoundingClientRect({ accurate: true})
 
@@ -71,7 +53,7 @@ const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings, wi
             let slideWidth = maxAvailableSlideHeight*slideContentWidth/slideContentHeight;
 
             return (
-              <StoryModuleTextGalleryItem index={i} key={d.id} data={d.data} type={d.type} style={{
+              <StoryModuleTextGalleryItem index={i} key={d.id} doc={d} data={d.data} type={d.type} style={{
                 width: slideWidth,
                 height: maxAvailableSlideHeight,
               }}/>

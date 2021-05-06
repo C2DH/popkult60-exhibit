@@ -11,7 +11,7 @@ const MagicObjectMag = ({ highlight = false, version='' }) => {
           <path fill="#FFEACC" d="M104.8,0L0,28.6l137.7,64L244.4,63L104.8,0L104.8,0z"/>
         </g>
       </svg>
-      <img className="MagicObject_image" src={version === 'magPilote' ? itemMagPilote: itemMagTv} alt=''/>
+      <img nopin="nopin" className="MagicObject_image" src={version === 'magPilote' ? itemMagPilote: itemMagTv} alt=''/>
     </div>
   )
 }

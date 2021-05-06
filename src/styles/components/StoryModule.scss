@@ -39,6 +39,13 @@
   overflow: hidden;
 }
 
+.StoryModuleTextGalleryItem_caption{
+  cursor: pointer;
+  span{
+    text-decoration: underline;
+  }
+}
+
 
 .StoryBackgroundModules{
   position: fixed;

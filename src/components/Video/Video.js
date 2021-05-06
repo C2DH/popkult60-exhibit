@@ -129,6 +129,7 @@ function Video(
     onProgress,
     onPlay,
     onPause,
+    backgroundImage = false,
     ...props
   },
   ref
@@ -159,6 +160,9 @@ function Video(
   }
 
   const toggleSubtitle = () => {
+    if (!playerRef.current) {
+      return
+    }
     const video = playerRef.current.wrapper.querySelector('video')
     for (var i = 0; i < video.textTracks.length; i++) {
       const mode = video.textTracks[i].mode
@@ -171,7 +175,13 @@ function Video(
   }
 
   const selectSubtitle = (lang) => {
+    if (!playerRef.current) {
+      return
+    }
     const video = playerRef.current.wrapper.querySelector('video')
+    if (!video) {
+      return
+    }
     for (var i = 0; i < video.textTracks.length; i++) {
       video.textTracks[i].mode =
         lang === video.textTracks[i].language ? 'showing' : 'hidden'
@@ -238,6 +248,7 @@ function Video(
       }}
     >
       <ReactPlayer
+        light={backgroundImage}
         onReady={handleOnReady}
         ref={playerRef}
         volume={volume}

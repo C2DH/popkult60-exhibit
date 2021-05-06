@@ -1,14 +1,15 @@
 import React from 'react'
 import ObjectContent from '../ObjectContent'
-import { Container, Row, Col} from 'react-bootstrap'
-import { getModuleLayout } from '../../logic/layout'
+// import { Container, Row, Col} from 'react-bootstrap'
+// import { getModuleLayout } from '../../logic/layout'
 
 const StoryModuleObject = ({ mod, documents, withMap=false, height=100, width }) => {
   // const layout = get(mod, "layout", "text-object")
-  console.info('StoryModuleObject module:', mod, documents)
-  const layout = getModuleLayout(mod)
+  // const layout = getModuleLayout(mod)
+  // console.info('StoryModuleObject module:', mod, documents)
+  //
   return (
-    <div className="StoryModuleObject w-100 bg-dark" style={{ height }}>
+    <div className="StoryModuleObject w-100" style={{ minHeght: height }}>
     {documents.map((d, i) => (
       <ObjectContent key={i} document={d}
         objectConfig={mod}

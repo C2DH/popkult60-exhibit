@@ -12,7 +12,7 @@ const MagicObjectPoster = ({ highlight = false }) => {
             l79.2-6.9l0.1,0l7.3-0.6l0-7.4l-0.1-27.2l0-3.5l-0.5-228.9l0-3.5l0-3.5l-0.1-30.7l0-7.5l-7.5-0.4L8.5,0.5L0,0L0,0z"/>
         </g>
       </svg>
-      <img style={{position: 'absolute', top:0, left: 0, width:"100%"}} src={itemPoster} alt=''/>
+      <img nopin="nopin" style={{position: 'absolute', top:0, left: 0, width:"100%"}} src={itemPoster} alt=''/>
     </div>
   )
 }

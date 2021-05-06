@@ -3,8 +3,7 @@ import { get } from 'lodash'
 import { useTransition, animated } from 'react-spring'
 import {isBackgroundModuleNeeded} from '../../logic/layout'
 
-
-const StoryBackgroundModule = ({ mod, storyDocuments, style }) => {
+const StoryBackgroundModule = ({ mod, storyDocuments, style, active=false }) => {
   const documentsIndex = storyDocuments.reduce((acc, d) => {
     acc[d.document_id] = d
     return acc
@@ -14,6 +13,7 @@ const StoryBackgroundModule = ({ mod, storyDocuments, style }) => {
   }
   const backgroundCoverImage = get(documentsIndex[mod.object.id], 'data.resolutions.preview.url')
   const backgroundCoverImageCaption = get(documentsIndex[mod.object.id], 'data.title', '')
+  // load image please.
   return (
     <animated.div className="StoryBackgroundModule" style={{
       ...style,
@@ -26,18 +26,19 @@ const StoryBackgroundModule = ({ mod, storyDocuments, style }) => {
       paddingLeft: 100,
       paddingBottom: 150,
     }}>
-    <div className="w-100 h-100" style={{
-      backgroundImage: `url(${backgroundCoverImage})`,
-      backgroundSize: 'contain',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center center',
-      backgroundColor: 'var(--dark)',
-    }} />
+      <div className="w-100 h-100" style={{
+        backgroundImage: backgroundCoverImage ? `url(${backgroundCoverImage})` : null,
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundColor: 'var(--dark)',
+      }}>
+      </div>
       <figcaption className="position-absolute" style={{
         left: 100,
         right: 100,
       }}>
-      { backgroundCoverImageCaption }
+      { backgroundCoverImageCaption } {JSON.stringify(mod.object)} {JSON.stringify(active)}
       </figcaption>
     </animated.div>
   )
@@ -74,7 +75,7 @@ const StoryBackgroundModules = ({ storyModules = [], currentModule = -1, storyDo
         if (item > -1 && isBackgroundModuleNeeded(storyModules[item])) {
           return (
             <StoryBackgroundModule key={key} style={props}
-              mod={storyModules[item]} storyDocuments={storyDocuments}
+              mod={storyModules[item]} active={item === activeStep.idx} storyDocuments={storyDocuments}
               />
           )
         }

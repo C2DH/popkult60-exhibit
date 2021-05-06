@@ -48,11 +48,12 @@ h1{
 h2{
   font-family: var(--font-family-headings);
   font-size: 2rem;
+  line-height: 1.75;
 }
 
 #logo{
   position: absolute;
-  top: 0;
+  top: -20px; // this is related to header top offset
   left: 50%;
   z-index: 1001;
 }

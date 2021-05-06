@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StoryModule from './StoryModule'
-import StoryBackgroundModules from './StoryBackgroundModules'
+// import StoryBackgroundModules from './StoryBackgroundModules'
 
 const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], onChange, withMap=false }) => {
   const [scrollingSteps, setScrollingSteps] = useState({
@@ -71,24 +71,24 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
 
   return (
     <>
-    <StoryBackgroundModules
+    {/*<StoryBackgroundModules
       storyModules={storyModules}
       storyDocuments={storyDocuments}
       currentModule={scrollingSteps.current}
       withMap={withMap}
-    />
+    />*/}
     <div style={{
       marginTop: withMap ? window.innerHeight / 4 : 100,
     }}>
       {storyModules.map((d, i) => {
-        // let stepProgress = 0.0
-        let stepInViewport = false
+        let stepProgress = 0.0
+        // let stepInViewport = false
         if (scrollingSteps.steps.length && scrollingSteps.steps[i]) {
-          // stepProgress = scrollingSteps.steps[i].progress
-          stepInViewport = scrollingSteps.steps[i].inViewport
+          stepProgress = scrollingSteps.steps[i].progress
+          // stepInViewport = scrollingSteps.steps[i].inViewport
         }
         return (
-          <StoryModule num={i+1} key={i} mod={d} width={width} height={height} inViewport={scrollingSteps.current === i} storyDocuments={storyDocuments} withMap={withMap}/>
+          <StoryModule num={i+1} key={i} mod={d} width={width} height={height} progress={scrollingSteps.current === i ? stepProgress : 0} inViewport={scrollingSteps.current === i} storyDocuments={storyDocuments} withMap={withMap}/>
         )
       })}
     </div>

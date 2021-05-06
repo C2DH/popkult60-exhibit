@@ -38,9 +38,7 @@ const HomeThemesLoop = ({ themes=[], height=0, width=0, stepHeight=0, themeSelec
   })
 
   useEffect(() => {
-    if (themeSelected === -1) {
-        setActiveStep({ idx: -1, direction: 'down' })
-    } else if (Array.isArray(themes) && themeSelected) {
+    if (Array.isArray(themes) && themeSelected) {
       const idx = themes.findIndex(d => d.slug === themeSelected)
       if (idx !== -1 && idx !== activeStep.idx) {
         setActiveStep({ idx, direction: 'down' })
