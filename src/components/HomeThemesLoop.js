@@ -3,7 +3,7 @@ import { useTransition, animated } from 'react-spring'
 import LangLink from './LangLink'
 import '../styles/components/HomeThemesLoop.scss'
 
-const HomeThemeItem = ({ style, theme }) => {
+const HomeThemeItem = ({ style, theme, displayAuthors=false }) => {
   const authors = (theme?.authors || [])
 
   return (
@@ -15,11 +15,11 @@ const HomeThemeItem = ({ style, theme }) => {
       <h2 className="text-center">
         <span className="p-1">{theme?.data?.abstract}</span>
       </h2>
-      {authors.map((author, i) => (
+      {displayAuthors ? authors.map((author, i) => (
         <div key={i} className="HomeThemeItem_author text-center mb-5">
           <span>{author.fullname}</span>
         </div>
-      ))}
+      )): null}
       </>
     </animated.div>
   )
@@ -50,7 +50,7 @@ const HomeThemesLoop = ({ themes=[], height=0, width=0, stepHeight=0, themeSelec
     <div className="HomeThemesLoop position-relative" style={{
       height, width
     }}>
-      <div className="HomeThemesLoop_wrapper position-absolute" style={{zIndex:10, width: width/2, height: height/2 - 200, top: 200, left: width/4  }}>
+      <div className="HomeThemesLoop_wrapper position-absolute" style={{zIndex:10, width: width/2, height: height - 300, top: 150, left: width/4  }}>
         {transitions.map(({ item, props, key }) => {
           if (item > -1) {
             return <HomeThemeItem key={key} style={props} theme={themes[item]}/>
