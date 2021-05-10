@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { useStory } from '@c2dh/react-miller'
 import { useStore } from '../store'
 
+import Markdown from 'markdown-to-jsx'
 
 const StaticPage = ({
   id, height = 0, width = 0,
@@ -27,14 +28,29 @@ const StaticPage = ({
     });
   }, [backgroundColor])
 
+  if (error) {
+    console.warn(error);
+  }
   return (
-    <Container style={{ marginTop:100, minHeight: height }}>
+    <Container style={{ marginTop: 200, minHeight: height }}>
       <Row>
         <Col>
           <h1 className={textClassName}>{story?.data?.title}</h1>
-          <p className={textClassName}>{story?.data?.subtitle}</p>
-          error: {JSON.stringify(error)}
-          pending: {JSON.stringify(pending)}
+          <p className={textClassName + ' my-5'}>{story?.data?.subtitle}</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col xl={{span: 6}} lg={{span: 8}} className="text-white">
+          {story?.data?.abstract
+            ? (
+              <Markdown
+                children={story?.data?.abstract}
+                options={{
+                  forceBlock: true
+                }}/>
+              )
+            : null
+          }
         </Col>
       </Row>
     </Container>
