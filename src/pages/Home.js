@@ -42,7 +42,7 @@ const Home = () => {
     })
     : Themes
 
-  // console.info("Home rendering: themes", themes, pagination, error)
+  console.info("Home rendering: themes", themes, pagination, error)
   return (
     <div className="Home">
     <HomeRoom width={width} height={height} themeSelected={themeSelected} onThemeChanged={onThemeChanged}/>
