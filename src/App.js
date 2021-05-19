@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './routes'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import ScrollToTop from './components/ScrollToTop'
 // import Logo from './components/Logo'
 // import MainBackground from './components/MainBackground'
 
@@ -12,6 +13,7 @@ const { languageCode } = initializeI18next()
 const App = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL || ''}>
+      <ScrollToTop />
       <Header />
       <AppRoutes startLanguageCode={languageCode} />
       <Footer />
