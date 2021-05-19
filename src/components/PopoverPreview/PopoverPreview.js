@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { animated } from 'react-spring'
 import IconSwitch from '../IconSwitch'
 import styles from './PopoverPreview.module.scss'
+import { getDateFromMetadata } from '../../logic/dates'
 
 function getTranslate3d(transform) {
   if (!transform) return [0, 0, 0]
@@ -64,7 +65,7 @@ const PopoverPreview = React.forwardRef((props, ref) => {
         </div>
         <div>
           <h2 className="m-0 text-white" style={{fontSize: 'inherit'}}>{props.doc.data.title}</h2>
-          <p className="m-0 text-secondary">{props.doc.data.start_date} {props.doc.data.end_date}</p>
+          <p className="m-0 text-secondary">{getDateFromMetadata(props.doc.data)}</p>
         </div>
       </animated.div>
     </animated.div>

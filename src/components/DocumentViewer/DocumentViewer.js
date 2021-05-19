@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Container, Row, Col } from 'react-bootstrap'
 import DocumentViewerMetadata from './DocumentViewerMetadata'
 import DocumentViewerRelatedStories from './DocumentViewerRelatedStories'
-
+import { getDateFromMetadata } from '../../logic/dates'
 import '../../styles/components/DocumentViewer.scss'
 
 const DocumentViewerPdf = lazy(() => import('./DocumentViewerPdf'))
@@ -37,9 +37,21 @@ const DocumentViewer = ({ doc = {}, width, height }) => {
           </Row>
           <Row className="border-top border-white mt-2">
             <Col>
-              <label className="mb-0"><small>{t('documentDescription')}</small></label><p>
-              {typeof(doc.data.description) === 'string' || 'n.a'}
+              <label className="mb-0"><small>{t('documentDate')}</small></label>
+              <p>
+              {getDateFromMetadata(doc.data)}
               </p>
+              {typeof(doc.data.description) === 'string' && doc.data.description.length
+                ? (
+                  <>
+                  <label className="mb-0"><small>{t('documentDescription')}</small></label>
+                  <p>
+                    {doc.data.description}
+                  </p>
+                  </>
+                )
+                : null
+              }
               <DocumentViewerRelatedStories doc={doc}/>
             </Col>
             <Col>
