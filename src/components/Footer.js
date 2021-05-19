@@ -1,35 +1,40 @@
 import { Container, Row, Col, Nav } from 'react-bootstrap'
 import { useTranslation } from 'react-i18next'
-import LangNavLink from './LangNavLink'
+import LangLink from './LangLink'
+import { useNolangLocation } from '../hooks'
 import {
   HomeRoute,
   AboutRoute,
   TermsOfUseRoute
 } from '../constants'
+import '../styles/components/Footer.scss'
 
 const now = new Date()
 
-const Footer = ()=> {
+const Footer = () => {
   const { t } = useTranslation()
-
+  const { activeRoute } = useNolangLocation()
   return (
-    <Container>
+    <footer className="Footer w-100">
+    <Container className="pt-5">
       <Row>
         <Col>Copyright © <a href="https://www.uni.lu/">University of Luxembourg</a> {now.getFullYear()}</Col>
         <Col>
-          <Nav className="flex-column">
-            <Nav.Item><LangNavLink to={HomeRoute.to} exact>{t(HomeRoute.label)}</LangNavLink></Nav.Item>
-            <Nav.Item><LangNavLink to={AboutRoute.to} exact>{t(AboutRoute.label)}</LangNavLink></Nav.Item>
-            <Nav.Item><LangNavLink to={TermsOfUseRoute.to} exact>{t(TermsOfUseRoute.label)}</LangNavLink></Nav.Item>
+          <Nav className="justify-content-end">
+            {[HomeRoute, AboutRoute, TermsOfUseRoute].map((route, i) => {
+              return (
+                <LangLink key={i} className={route.to === activeRoute? 'active' : null}
+                  to={route.to}
+                >
+                  {t(route.label)}
+                </LangLink>
+              )
+            })}
           </Nav>
-        </Col>
-        <Col>
-          View sourcecode of this version: <a href={`https://github.com/C2DH/popkult60-exhibit/commit/${process.env.REACT_APP_GIT_REVISION}`}>
-          {process.env.REACT_APP_GIT_BRANCH}/{process.env.REACT_APP_GIT_REVISION}
-          </a>
         </Col>
       </Row>
     </Container>
+    </footer>
   )
 }
 
