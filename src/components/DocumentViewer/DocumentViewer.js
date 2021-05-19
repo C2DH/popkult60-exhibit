@@ -25,9 +25,7 @@ const DocumentViewer = ({ doc = {}, width, height }) => {
   return(
     <div className="DocumentViewer">
       <DocumentViewerComponent doc={doc} height={height * .8} />
-      <div className="border-top border-white" style={{
-        paddingBottom: height * 0.2
-      }}>
+      <div className="border-top border-white">
         <Container className="border-bottom border-white">
           <Row>
             <Col>

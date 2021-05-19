@@ -14,16 +14,17 @@ const DocumentDetail = () => {
   const { id } = useParams()
   const { t, i18n } = useTranslation()
   const { width, height } = useCurrentWindowDimensions()
+  const {changeTheme} = useStore(state => state)
+
   const [doc, {pending}] = useDocument(id, {
     language: i18n.language,
   })
 
   useEffect(() => {
-    useStore.setState({
-      backgroundColor: 'var(--rich-black-FOGRA-29)',
-      logoReduced: true
-    });
-  }, [])
+    changeTheme({
+      name: 'themeDocumentDetail',
+    })
+  }, [changeTheme])
 
   return (
     <div
