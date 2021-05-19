@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom'
 
 const getWidth = () => window.innerWidth
   || document.documentElement.clientWidth
@@ -154,4 +155,17 @@ export const usePrevious = (value) => {
   }, [value]); // Only re-run if value changes
   // Return previous value (happens before update in useEffect above)
   return ref.current;
+}
+
+
+export const useNolangLocation = () => {
+  const location = useLocation()
+  const { pathname } = location
+  const [activeRoute, setActiveRoute] = useState('')
+  useEffect(() => {
+    // get rid of language prefix
+    const route = `/${pathname.split('/').slice(2).join('/')}`
+    setActiveRoute(route)
+  }, [pathname]);
+  return { activeRoute }
 }
