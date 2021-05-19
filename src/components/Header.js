@@ -10,7 +10,6 @@ import {
   HomeRoute,
   CollectionRoute,
   AboutRoute,
-  TermsOfUseRoute,
   Languages,
 } from '../constants'
 
@@ -20,14 +19,9 @@ const HeaderLink = ({ to, children, active, activeColor, color, onClick, forceLa
       forceLanguage={forceLanguage}
       onClick={onClick}
       to={to} style={{
-      backgroundColor: active
-        ? activeColor
-        : 'transparent',
-      color: active
-        ? 'var(--white)'
-        : color,
-      borderRadius: '1rem',
-    }}>{children}</LangLink>
+        borderRadius: '1rem',
+      }}
+    >{children}</LangLink>
   )
 }
 
