@@ -37,7 +37,6 @@ export const useStore = create((set) => ({
     }))
   },
   changeTheme: ({ name, accentColor, textColor, linkColor, backgroundColor }) => {
-    document.body.style.backgroundColor = backgroundColor
     document.body.className = ''
     document.body.classList.add(name)
     return set(state => ({
