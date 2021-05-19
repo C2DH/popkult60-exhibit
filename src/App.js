@@ -1,9 +1,9 @@
 import { BrowserRouter } from 'react-router-dom'
 import AppRoutes from './routes'
-// import Footer from './components/Footer'
+import Footer from './components/Footer'
 import Header from './components/Header'
 // import Logo from './components/Logo'
-import MainBackground from './components/MainBackground'
+// import MainBackground from './components/MainBackground'
 
 import { initializeI18next } from './logic/language'
 
@@ -13,9 +13,8 @@ const App = () => {
   return (
     <BrowserRouter basename={process.env.PUBLIC_URL || ''}>
       <Header />
-      <MainBackground />
       <AppRoutes startLanguageCode={languageCode} />
-
+      <Footer />
     </BrowserRouter>
   );
 }

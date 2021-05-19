@@ -8,10 +8,10 @@ import Markdown from 'markdown-to-jsx'
 
 const StaticPage = ({
   id, height = 0, width = 0,
-  backgroundColor='var(--royal-blue-dark)',
-  textClassName='text-white',
+  backgroundColor='var(--dark)',
 }) => {
   const { i18n } = useTranslation()
+  const {changeTheme} = useStore(state => state)
   const [story, { pending, error }] = useStory(id, {
     parser: 'yaml'
   }, {
@@ -19,28 +19,32 @@ const StaticPage = ({
   })
   console.info('Static', story)
   useEffect(() => {
-    useStore.setState({
+    changeTheme({
+      name: 'themeStaticPage',
       backgroundColor,
       logoColor: '#95B1B5',
       logoActiveColor: '#f95421',
       color: 'var(--secondary)',
-      activeColor: 'var(--accent)',
+      activeColor: 'var(--white)',
+      accentColor: 'var(--accent)',
+      linkColor: 'var(--secondary)',
+      textColor: 'var(--white)',
     });
-  }, [backgroundColor])
+  }, [changeTheme, backgroundColor])
 
   if (error) {
     console.warn(error);
   }
   return (
-    <Container style={{ marginTop: 200, minHeight: height }}>
+    <Container className='StaticPage' style={{ marginTop: 200, minHeight: height }}>
       <Row>
         <Col>
-          <h1 className={textClassName}>{story?.data?.title}</h1>
-          <p className={textClassName + ' my-5'}>{story?.data?.subtitle}</p>
+          <h1>{story?.data?.title}</h1>
+          <p className={' my-5'}>{story?.data?.subtitle}</p>
         </Col>
       </Row>
       <Row>
-        <Col xl={{span: 6}} lg={{span: 8}} className="text-white">
+        <Col xl={{span: 6}} lg={{span: 8}}>
           {story?.data?.abstract
             ? (
               <Markdown

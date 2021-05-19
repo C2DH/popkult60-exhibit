@@ -40,6 +40,7 @@ const Story = () => {
   const { height, width } = useCurrentWindowDimensions()
   const [{ offset }, setOffset] = useSpring(() => ({ offset: 0 }));
   const [bbox, setBbox] = useState([])
+  const {changeTheme} = useStore(state => state)
   const ref = useRef()
 
   const [story, { pending, error }] = useStory(id, {
@@ -84,13 +85,14 @@ const Story = () => {
   });
 
   useEffect(() => {
+    changeTheme({ name: 'themeStory'})
     useStore.setState({
-      backgroundColor: 'var(--white)',
+      // backgroundColor: 'var(--white)',
       logoReduced: true,
-      logoActiveColor: '#f95421',
-      color: '#121821',
+      // logoActiveColor: '#f95421',
+      // color: '#121821',
     });
-  }, [])
+  }, [changeTheme])
   if (error) {
     console.error(error)
   }

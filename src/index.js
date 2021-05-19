@@ -5,7 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 console.info('Welcome to popkult60')
-console.info('version:', process.env.REACT_APP_GIT_BRANCH, process.env.REACT_APP_GIT_REVISION)
+console.info(
+  'version:', process.env.REACT_APP_GIT_BRANCH, process.env.REACT_APP_GIT_REVISION,
+  `https://github.com/C2DH/popkult60-exhibit/commit/${process.env.REACT_APP_GIT_REVISION}`
+)
 console.info('Current proxy:', process.env.REACT_APP_PROXY)
 console.info('Current map style:', process.env.REACT_APP_MAPBOX_STYLE_URL)
 ReactDOM.render(
