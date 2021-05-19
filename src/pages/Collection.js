@@ -16,17 +16,16 @@ import {
 const Collection = () => {
   const { height } = useCurrentWindowDimensions()
   const { t, i18n } = useTranslation()
+  const {changeTheme} = useStore(state => state)
+
   useEffect(() => {
-    useStore.setState({
-      backgroundColor: 'var(--primary)',
-      color: 'var(--secondary)',
-      activeColor: 'var(--accent)',
-      logoReduced: true
-    });
-  }, [])
+    changeTheme({
+      name: 'themeCollection',
+    })
+  }, [changeTheme])
   const [query, setQuery] = useQueryParams({
     q: StringParam,
-    g: withDefault(StringParam, 'all'),
+    g: withDefault(StringParam, 'data.type'),
     sort: withDefault(StringParam , 'asc'),
     filters: withDefault(ArrayParam, []),
   });
@@ -35,7 +34,7 @@ const Collection = () => {
   const [documents, pagination, { loading, error }] = useDocuments({
     limit: 1000,
     offset: 0,
-    // q,
+    q: query.q,
     // filters: {
     //   data__type: queryString.type || undefined,
     // },
