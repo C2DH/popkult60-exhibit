@@ -1,6 +1,13 @@
 import create from 'zustand';
 
 export const useStore = create((set) => ({
+  theme: {
+    name: 'default',
+    accentColor: 'var(--accent)',
+    textColor: 'var(--dark)',
+    linkColor: 'var(--primary)',
+    backgroundColor: 'transparent',
+  },
   documentFullscreen: null,
   backgroundColor: 'transparent',
   // var(--rich-black-FOGRA-29)
@@ -29,4 +36,18 @@ export const useStore = create((set) => ({
       color: state.previousColor
     }))
   },
+  changeTheme: ({ name, accentColor, textColor, linkColor, backgroundColor }) => {
+    document.body.style.backgroundColor = backgroundColor
+    document.body.className = ''
+    document.body.classList.add(name)
+    return set(state => ({
+      theme: {
+        name,
+        accentColor,
+        textColor,
+        linkColor,
+        backgroundColor
+      }
+    }))
+  }
 }));

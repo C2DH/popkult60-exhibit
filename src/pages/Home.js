@@ -18,16 +18,12 @@ const Home = () => {
     language: i18n.language.split('-').join('_'),
     defaultLanguage: i18n.options.defaultLocale,
   })
+  const {changeTheme} = useStore(state => state)
   useEffect(() => {
-    useStore.setState({
-      // var(--rich-black-FOGRA-29)
-      color: '#121821',
-      backgroundColor: 'var(--white)',
-      logoReduced: false,
-      activeColor: 'var(--accent)',
-      logoColor: '#121821',
+    changeTheme({
+      name: 'themeHome',
     });
-  }, [])
+  }, [changeTheme])
   const onThemeChanged = (alias) => {
     console.info('@onThemeChanged', alias)
     setThemeSelected(alias)
