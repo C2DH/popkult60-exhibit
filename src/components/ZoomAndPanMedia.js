@@ -188,6 +188,7 @@ class ZoomAndPanMedia extends Component {
             onPanEnd={this.handlePanEnd}
           >
             <img
+              nopin="nopin"
               alt="Zoom and pan"
               onDragStart={(e) => {
                 e.preventDefault()

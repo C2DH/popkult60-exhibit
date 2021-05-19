@@ -8,7 +8,6 @@ import { useStore } from '../store'
 import { useStories } from '@c2dh/react-miller'
 import { Themes } from '../constants'
 
-
 const Home = () => {
   const { i18n } = useTranslation()
   const { width, height } = useCurrentWindowDimensions()
@@ -24,7 +23,9 @@ const Home = () => {
       // var(--rich-black-FOGRA-29)
       color: '#121821',
       backgroundColor: 'var(--white)',
-      logoReduced: false
+      logoReduced: false,
+      activeColor: 'var(--accent)',
+      logoColor: '#121821',
     });
   }, [])
   const onThemeChanged = (alias) => {

@@ -7,7 +7,7 @@ const ObjectContentImage = ({
     return null
   }
   return (
-    <div {...props} className={`ObjectContentImage ${className} ${objectPosition === 'right' ? 'text-right': 'text-left'} mb-5`}>
+    <div {...props} className={`ObjectContentImage ${className} ${objectPosition === 'right' ? 'text-right': 'text-left'}`}>
       <img
         alt={document.data.title ? document.data.title : ""}
         src={document.data.resolutions.medium.url}
@@ -18,9 +18,6 @@ const ObjectContentImage = ({
           objectPosition,
         }}
       />
-      <figcaption className="p-2 small">
-      {document.data.title} {document.data.year}
-      </figcaption>
     </div>
   );
 }

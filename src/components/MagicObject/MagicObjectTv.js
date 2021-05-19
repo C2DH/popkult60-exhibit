@@ -15,7 +15,7 @@ const MagicObjectTv = ({ highlight = false }) => {
             l-27.7-136.9h41.1h3.8l2.4-2.9l7.7-9.3c2.6-2.3,4.1-5.6,4.1-9.1V15c0-4.4-2.3-8.4-6.1-10.5l-4.5-3.1L290.7,0L290.7,0z"/>
         </g>
       </svg>
-      <img style={{position: 'absolute', top:0, left: 0, width:"100%"}} src={itemTv} alt=''/>
+      <img nopin="nopin" style={{position: 'absolute', top:0, left: 0, width:"100%"}} src={itemTv} alt=''/>
     </div>
   )
 }

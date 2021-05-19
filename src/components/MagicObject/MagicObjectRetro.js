@@ -45,7 +45,7 @@ const MagicObjectRetro = ({ highlight = false }) => {
         		c1.9-36.3-15.3-47-23.8-50.1C98.2,1.4,93,0,87.6,0L87.6,0z M92.4,25.9l0-1.2c0.2,0.1,0.5,0.3,0.7,0.5L92.4,25.9L92.4,25.9z"/>
         </g>
       </svg>
-      <img style={{position: 'absolute', top:0, left: 0, width:"100%"}} src={itemRetro} alt=''/>
+      <img nopin="nopin" style={{position: 'absolute', top:0, left: 0, width:"100%"}} src={itemRetro} alt=''/>
     </div>
   )
 }

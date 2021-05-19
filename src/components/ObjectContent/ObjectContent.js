@@ -1,15 +1,20 @@
+import React from 'react'
 import ObjectContentImage from './ObjectContentImage'
-import '../../styles/components/ObjectContent.scss'
+import DocumentViewerVideo from '../DocumentViewer/DocumentViewerVideo'
 import { get } from 'lodash'
+import '../../styles/components/ObjectContent.scss'
+import ObjectContentCaption from './ObjectContentCaption'
 
 
 const ObjectContent = ({ objectConfig, document, goBig,
   availableWidth = 0,
   availableHeight = 0,
-  className, style
+  className, style,
+  debug = false,
 }) => {
   const objectContentWidth = get(document, 'data.resolutions.medium.width', window.innerHeight / 2)
   const objectContentHeight = get(document, 'data.resolutions.medium.height', window.innerHeight / 2)
+
   const isPortrait = objectContentHeight > objectContentWidth
 
   const width = isPortrait
@@ -19,6 +24,9 @@ const ObjectContent = ({ objectConfig, document, goBig,
     ? availableHeight
     : availableWidth * objectContentHeight / objectContentWidth
 
+  if (debug && typeof objectConfig.caption === 'object') {
+    console.error('wrong type for the caption:', objectConfig, document)
+  }
   return (
     <div className={`ObjectContent ${className}`} style={style}>
       {(objectConfig.type === "image" || objectConfig.type === "pdf") && (
@@ -32,15 +40,14 @@ const ObjectContent = ({ objectConfig, document, goBig,
           }}
         />
       )}
-      {objectConfig.caption && (
-          <div className="ObjectContent_captionWrapper">
-            <div className="ObjectContent_caption">
-              <div className="ObjectContent_captionText bg-white">
-                <p>{objectConfig.caption}</p>
-              </div>
-            </div>
-          </div>
-        )}
+      {objectConfig.type === "video" && ( // see storyBackgroundModule
+        <div className="text-white">
+          <DocumentViewerVideo paddingTop={0} doc={document} height={availableHeight} />
+        </div>
+      )}
+      <div className="ObjectContent_captionWrapper">
+        <ObjectContentCaption caption={objectConfig.caption} doc={document} />
+      </div>
     </div>
   )
 }

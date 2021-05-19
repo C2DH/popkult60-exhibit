@@ -5,11 +5,10 @@ import { useTranslation } from 'react-i18next'
 const NotFound = () => {
   const { t } = useTranslation()
   return (
-    <Container>
+    <Container style={{ marginTop: 200 }}>
       <Row>
         <Col>
-          <h1 className="my-5">{t('pages.notFound.title')}</h1>
-          <p>{t('pages.notFound.subheading')}</p>
+          <h1>{t('pagesNotFoundTitle')}</h1>
         </Col>
       </Row>
     </Container>

@@ -38,3 +38,47 @@
   width: 100%;
   overflow: hidden;
 }
+
+.StoryModuleTextGalleryItem_caption{
+  cursor: pointer;
+  span{
+    text-decoration: underline;
+  }
+}
+
+
+.StoryBackgroundModules{
+  position: fixed;
+  // background: var(--accent);
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  left: 0;
+  right: 0;
+  will-change: opacity;
+  transition: opacity  0.6s cubic-bezier(0.83, 0, 0.17, 1);
+}
+
+.StoryModuleText .TextContent_textQuotation{
+  font-size: 1.65rem;
+}
+
+.StoryModule_num{
+  position: absolute;
+  left: -1.7rem;
+  top: 1rem;;
+  border: 2px solid;
+  font-weight: bold;
+  width: 2rem;
+  height: 2rem;
+  line-height: 1.7rem;
+  border-radius: 1rem;
+  text-align: center;
+
+}
+
+.StoryModule.active .StoryModule_num{
+  background-color: var(--dark);
+  color: var(--white);
+  border-color: var(--dark);
+}

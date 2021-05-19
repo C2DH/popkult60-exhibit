@@ -7,7 +7,7 @@ const MetadataFields = [
   { label: 'documentDataSourceIdentifier', key: 'data.source.identifier'},
   { label: 'documentDataPublisher', key: 'data.publisher'},
   { label: 'documentDataProvenance', key: 'data.provenance'},
-  { label: 'documentCopyright', key: 'copyright'}
+  { label: 'documentCopyright', key: 'data.copyright'}
 ]
 
 const DocumentViewerMetadata = ({ doc }) => {
@@ -20,7 +20,7 @@ const DocumentViewerMetadata = ({ doc }) => {
   return (
     <div className="DocumentViewerMetadata">
       {contents.map((d, i) => (
-        d.value
+        typeof d.value === 'string' && d.value.length && d.value.toLowerCase() !== 'n/a'
           ? <div key={i}>
               <label className="mb-0"><small>{t(d.label)}</small></label>
               <p className="font-weight-bold">{d.value}</p>

@@ -1,14 +1,20 @@
-import React from "react";
-import TextContent from "../TextContent";
-// import { get } from "lodash";
+import React from 'react'
+import TextContent from '../TextContent'
+import { Container, Row, Col} from 'react-bootstrap'
+import { getModuleLayout } from '../../logic/layout'
 
-const ModuleText = ({ mod, backgroundStyles }) => {
+const ModuleText = ({ mod, backgroundStyles, withMap=false }) => {
   // const layout = get(mod, "layout", "text-object")
-  // console.info('ModuleTextObject layout:', layout)
+  console.info('ModuleText module:', mod)
+  const layout = getModuleLayout(mod)
   return (
-    <div className="StoryModuleText bg-white p-5">
-      <TextContent textConfig={mod.text} />
-    </div>
+    <Container className="StoryModuleText">
+      <Row>
+        <Col className="p-5" {...layout.cols[0]}>
+          <TextContent textConfig={mod.text} />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

@@ -69,6 +69,11 @@ const HomeRoom = ({ width, height, margin=20, themeSelected, onThemeChanged }) =
     onThemeChanged(selectedId)
   }
 
+  const backgroundClickHandler = (e) => {
+    console.info(e)
+    onThemeChanged(-1)
+  }
+
   useEffect(() => {
     if (typeof x === "number" && typeof y === "number") {
       set({ xy: calc(coverWidth - x, coverHeight - y, coverWidth, coverHeight) })
@@ -76,7 +81,10 @@ const HomeRoom = ({ width, height, margin=20, themeSelected, onThemeChanged }) =
   })
 
   useEffect(() => {
-    if(themeSelected !== selected) {
+    if(themeSelected === -1) {
+      console.info('themeSelected changed to:', themeSelected)
+      setSelected(themeSelected)
+    } else if(themeSelected !== selected) {
       console.info('themeSelected changed to:', themeSelected)
       setSelected(themeSelected)
     }
@@ -84,7 +92,7 @@ const HomeRoom = ({ width, height, margin=20, themeSelected, onThemeChanged }) =
 
 
   return (
-    <div className="HomeRoom" style={{
+    <div className="HomeRoom" onClick={backgroundClickHandler} style={{
       width,
       height,
     }}>

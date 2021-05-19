@@ -1,34 +1,34 @@
-.ObjectContent_caption {
-  flex-grow: 1;
-  width: 0;
-  position: relative;
-  flex: 1 1 auto;
-}
-
-
-.ObjectContent_captionText {
-  position: relative;
-  flex: 1 1 0%;
-  min-width: 0;
-  overflow: hidden;
-  background: white;
-  p {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    white-space: nowrap;
-    position: relative;
-    overflow-x: auto;
-    margin-bottom: 0;
-    padding: 15px 5px;
-  }
-}
-
-.ObjectContent_captionText::after {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  content: "";
-  width: 30px;
-  background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, #fff);
-}
+// .ObjectContent_caption {
+//   flex-grow: 1;
+//   width: 0;
+//   position: relative;
+//   flex: 1 1 auto;
+// }
+//
+//
+// .ObjectContent_captionText {
+//   position: relative;
+//   flex: 1 1 0%;
+//   min-width: 0;
+//   overflow: hidden;
+//   background: white;
+//   p {
+//     text-transform: uppercase;
+//     font-size: 0.75rem;
+//     white-space: nowrap;
+//     position: relative;
+//     overflow-x: auto;
+//     margin-bottom: 0;
+//     padding: 15px 5px;
+//   }
+// }
+//
+// .ObjectContent_captionText::after {
+//   position: absolute;
+//   right: 0;
+//   top: 0;
+//   height: 100%;
+//   content: "";
+//   width: 30px;
+//   background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, #fff);
+// }
