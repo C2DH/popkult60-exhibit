@@ -9,10 +9,13 @@ import '../../styles/components/DocumentViewer.scss'
 const DocumentViewerPdf = lazy(() => import('./DocumentViewerPdf'))
 const DocumentViewerImage = lazy(() => import('./DocumentViewerImage'))
 const DocumentViewerVideo = lazy(() => import('./DocumentViewerVideo'))
+const DocumentViewerAudio = lazy(() => import('./DocumentViewerAudio'))
+
 const AvailableComponents = {
   'pdf': DocumentViewerPdf,
   'image': DocumentViewerImage,
   'video': DocumentViewerVideo,
+  'audio': DocumentViewerAudio,
 }
 
 const DocumentViewer = ({ doc = {}, width, height }) => {
