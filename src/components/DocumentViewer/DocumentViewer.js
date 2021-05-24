@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Container, Row, Col } from 'react-bootstrap'
 import DocumentViewerMetadata from './DocumentViewerMetadata'
 import DocumentViewerRelatedStories from './DocumentViewerRelatedStories'
-import { getDateFromMetadata } from '../../logic/dates'
+import { getDateFromMetadata, getTranslatableTypeFromMetadata } from '../../logic/metadata'
 import '../../styles/components/DocumentViewer.scss'
 
 const DocumentViewerPdf = lazy(() => import('./DocumentViewerPdf'))
@@ -19,7 +19,7 @@ const AvailableComponents = {
 }
 
 const DocumentViewer = ({ doc = {}, width, height }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const DocumentViewerComponent = AvailableComponents[doc.type]
 
   if(!DocumentViewerComponent) {
@@ -32,7 +32,7 @@ const DocumentViewer = ({ doc = {}, width, height }) => {
         <Container className="border-bottom border-white">
           <Row>
             <Col>
-              <div className="badge badge-primary-outline">{doc.data.type}</div>
+              <div className="badge badge-primary-outline">{t(getTranslatableTypeFromMetadata(doc.data))}</div>
               <h2 className="text-smaller">{doc.title}</h2>
             </Col>
           </Row>
@@ -40,7 +40,7 @@ const DocumentViewer = ({ doc = {}, width, height }) => {
             <Col>
               <label className="mb-0"><small>{t('documentDate')}</small></label>
               <p>
-              {getDateFromMetadata(doc.data)}
+              {getDateFromMetadata(doc.data, {language: i18n.language})}
               </p>
               {typeof(doc.data.description) === 'string' && doc.data.description.length
                 ? (

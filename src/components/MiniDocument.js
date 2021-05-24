@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import IconSwitch from './IconSwitch'
 import PopoverPreview from './PopoverPreview'
 import styles from './MiniDocument.module.scss'
-
+import {getTranslatableTypeFromMetadata} from '../logic/metadata'
 
 const MiniDocument = ({ doc, mobile=false }) => {
   const { t } = useTranslation()
@@ -64,7 +64,7 @@ const MiniDocument = ({ doc, mobile=false }) => {
               doc={doc}
               style={props}
               popper={popper}
-              type={t(`documentTypes-${doc.data.type.toLowerCase()}`)}
+              type={t(getTranslatableTypeFromMetadata({ type: doc.data.type }))}
             ></PopoverPreview>
           )
       )}
