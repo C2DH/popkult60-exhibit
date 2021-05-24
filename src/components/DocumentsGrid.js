@@ -3,13 +3,15 @@ import { Container, Row, Col } from 'react-bootstrap'
 import MiniDocument from './MiniDocument'
 import LangLink from './LangLink'
 import groupBy from 'lodash/groupBy'
-
+import { useTranslation } from 'react-i18next'
+import { getTranslatableTypeFromMetadata } from '../logic/metadata'
 
 const DocumentsGrid = ({
   documents = [],
   ascending = true,
   groupKey = 'data.year'
 }) => {
+  const { t } = useTranslation()
   const { documentsGroups, keys } = useMemo(() => {
     const documentsGroups = groupBy(documents, groupKey)
     let keys = Object.keys(documentsGroups).sort()
@@ -24,7 +26,11 @@ const DocumentsGrid = ({
     <Container key={k}>
       {k !== "undefined" && (
         <Row>
-          <Col>{k || ''}</Col>
+          <Col>{
+            groupKey === 'data.type'
+              ? t(getTranslatableTypeFromMetadata({ type: k }))
+              : k
+          }</Col>
         </Row>
       )}
       <Row>
