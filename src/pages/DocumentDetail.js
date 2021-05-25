@@ -17,9 +17,9 @@ const DocumentDetail = () => {
   const {changeTheme} = useStore(state => state)
 
   const [doc, {pending}] = useDocument(id, {
-    language: i18n.language,
+    language: i18n.language.split('-').join('_'),
+    defaultLanguage: i18n.options.defaultLocale,
   })
-
   useEffect(() => {
     changeTheme({
       name: 'themeDocumentDetail',
