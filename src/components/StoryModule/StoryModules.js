@@ -71,22 +71,22 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
       // reset our reference.
       setScrollingSteps({steps})
 
-      let timer = setTimeout(() => {
-        const id = window.location.hash.replace('#', '');
-        if (id.length && !withMap) {
-          // go to anchor
-          const element = document.getElementById(id);
-          console.info('ScrollToTop: reaching id =', id);
-          if (element) {
-            // element.scrollIntoView();
-            window.scrollTo(0, element.offsetTop)
-          }
-        }
-      }, 100)
-
-      return () => {
-        clearTimeout(timer)
-      }
+      // let timer = setTimeout(() => {
+      //   const id = window.location.hash.replace('#', '');
+      //   if (id.length && !withMap) {
+      //     // go to anchor
+      //     const element = document.getElementById(id);
+      //     console.info('ScrollToTop: reaching id =', id);
+      //     if (element) {
+      //       // element.scrollIntoView();
+      //       window.scrollTo(0, element.offsetTop)
+      //     }
+      //   }
+      // }, 100)
+      //
+      // return () => {
+      //   clearTimeout(timer)
+      // }
     }
   }, [width, height, storyModules, withMap])
 

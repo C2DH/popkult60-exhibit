@@ -63,7 +63,7 @@ const StoryModule = ({
           ? height
           : 'auto',
     }}>
-      <StoryModuleComponent num={num} mod={mod} documents={documents} withMap={withMap} height={height}/>
+      <StoryModuleComponent num={num} mod={mod} inViewport={inViewport} documents={documents} withMap={withMap} height={height}/>
     </div>
   )
 }

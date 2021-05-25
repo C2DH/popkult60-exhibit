@@ -92,6 +92,26 @@ const Story = () => {
       // color: '#121821',
     });
   }, [changeTheme])
+
+  // scroll to anchor see StoryModules module
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      const id = window.location.hash.replace('#', '');
+      if (storyModules.length && id.length) {
+        // go to anchor
+        const element = document.getElementById(id);
+        console.info('ScrollToTop: reaching id =', id);
+        if (element) {
+          // element.scrollIntoView();
+          window.scrollTo(0, element.offsetTop)
+        }
+      }
+    }, 100)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [storyModules.length])
+
   if (error) {
     console.error(error)
   }

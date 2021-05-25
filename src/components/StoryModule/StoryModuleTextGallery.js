@@ -17,6 +17,7 @@ const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings, wi
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    // focusOnSelect: true,
     // initialSlide: documents.length - 1,
     variableWidth: true,
     // ...settings,

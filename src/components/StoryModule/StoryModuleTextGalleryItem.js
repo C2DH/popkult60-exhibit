@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStore } from '../../store'
-import { Maximize2 } from 'react-feather'
+import ObjectContentCaption from '../ObjectContent/ObjectContentCaption'
+
 
 const StoryModuleTextGalleryItem = ({ index , doc, data={}, type, ...props }) => {
   const openDocumentFullScreen = useStore(state => state.openDocumentFullScreen)
@@ -21,8 +22,7 @@ const StoryModuleTextGalleryItem = ({ index , doc, data={}, type, ...props }) =>
           }}
         />
         <div onClick={onClickHandler} className="StoryModuleTextGalleryItem_caption">
-          <span>{data.title}</span>
-          <Maximize2 />
+          <ObjectContentCaption doc={doc} />
         </div>
       </div>
     );
