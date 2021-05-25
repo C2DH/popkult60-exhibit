@@ -3,20 +3,23 @@ import { useTranslation } from 'react-i18next'
 import { Container, Row, Col } from 'react-bootstrap'
 import DocumentViewerMetadata from './DocumentViewerMetadata'
 import DocumentViewerRelatedStories from './DocumentViewerRelatedStories'
-import { getDateFromMetadata } from '../../logic/dates'
+import { getDateFromMetadata, getTranslatableTypeFromMetadata } from '../../logic/metadata'
 import '../../styles/components/DocumentViewer.scss'
 
 const DocumentViewerPdf = lazy(() => import('./DocumentViewerPdf'))
 const DocumentViewerImage = lazy(() => import('./DocumentViewerImage'))
 const DocumentViewerVideo = lazy(() => import('./DocumentViewerVideo'))
+const DocumentViewerAudio = lazy(() => import('./DocumentViewerAudio'))
+
 const AvailableComponents = {
   'pdf': DocumentViewerPdf,
   'image': DocumentViewerImage,
   'video': DocumentViewerVideo,
+  'audio': DocumentViewerAudio,
 }
 
 const DocumentViewer = ({ doc = {}, width, height }) => {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const DocumentViewerComponent = AvailableComponents[doc.type]
 
   if(!DocumentViewerComponent) {
@@ -25,13 +28,11 @@ const DocumentViewer = ({ doc = {}, width, height }) => {
   return(
     <div className="DocumentViewer">
       <DocumentViewerComponent doc={doc} height={height * .8} />
-      <div className="border-top border-white" style={{
-        paddingBottom: height * 0.2
-      }}>
+      <div className="border-top border-white">
         <Container className="border-bottom border-white">
           <Row>
             <Col>
-              <div className="badge badge-primary-outline">{doc.data.type}</div>
+              <div className="badge badge-primary-outline">{t(getTranslatableTypeFromMetadata(doc.data))}</div>
               <h2 className="text-smaller">{doc.title}</h2>
             </Col>
           </Row>
@@ -39,7 +40,7 @@ const DocumentViewer = ({ doc = {}, width, height }) => {
             <Col>
               <label className="mb-0"><small>{t('documentDate')}</small></label>
               <p>
-              {getDateFromMetadata(doc.data)}
+              {getDateFromMetadata(doc.data, {language: i18n.language})}
               </p>
               {typeof(doc.data.description) === 'string' && doc.data.description.length
                 ? (

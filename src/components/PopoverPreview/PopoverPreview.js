@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 import { animated } from 'react-spring'
 import IconSwitch from '../IconSwitch'
 import styles from './PopoverPreview.module.scss'
-import { getDateFromMetadata } from '../../logic/dates'
+import { getDateFromMetadata } from '../../logic/metadata'
 
 function getTranslate3d(transform) {
   if (!transform) return [0, 0, 0]

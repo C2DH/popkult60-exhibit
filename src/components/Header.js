@@ -60,7 +60,7 @@ const Header = () => {
                 {... {color, activeColor}}
               >{t(HomeRoute.label)}</HeaderLink>
               <HeaderLink to={CollectionRoute.to}
-                active={activeRoute === CollectionRoute.to}
+                active={activeRoute === CollectionRoute.to || activeRoute.indexOf('/doc/') !== -1 }
                 {... {color, activeColor}}
               >{t(CollectionRoute.label)}</HeaderLink>
             </div>
