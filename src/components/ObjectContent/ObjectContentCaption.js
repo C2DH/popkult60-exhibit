@@ -17,7 +17,7 @@ const ObjectContentCaption = ({ doc, caption='' }) => {
           <b>{title}</b> &middot; {copyright}
           {caption.length ? (<p>{caption}</p>) : null}
           &nbsp;&nbsp;
-          <LangLink to={`/doc/${doc.slug}`} className="d-inline-flex align-items-center" style={{
+          {doc ? <LangLink to={`/doc/${doc.slug}`} className="d-inline-flex align-items-center" style={{
               background: 'var(--dark)',// color: 'var(--white)',
               borderRadius: 5,
               fontSize: 14,
@@ -29,6 +29,7 @@ const ObjectContentCaption = ({ doc, caption='' }) => {
             <ArrowRightCircle size={16}
             color="var(--white)"/>
           </LangLink>
+        : null}
         </div>
       </div>
     </div>

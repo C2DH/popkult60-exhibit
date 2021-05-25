@@ -73,7 +73,7 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
 
       let timer = setTimeout(() => {
         const id = window.location.hash.replace('#', '');
-        if (id.length) {
+        if (id.length && !withMap) {
           // go to anchor
           const element = document.getElementById(id);
           console.info('ScrollToTop: reaching id =', id);
@@ -88,7 +88,7 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
         clearTimeout(timer)
       }
     }
-  }, [width, height, storyModules])
+  }, [width, height, storyModules, withMap])
 
   return (
     <>
