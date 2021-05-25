@@ -44,7 +44,7 @@ const LangRoutes = () => {
         <Collection width={width} height={height} />
       </Route>
       <Route path={`${path}*`}>
-        <NotFound />
+        <NotFound height={height}/>
       </Route>
     </Switch>
   )
