@@ -3,7 +3,7 @@ import Video from '../Video'
 // import { get } from 'lodash'
 
 const DocumentViewerAudio = ({ doc, height, paddingTop=100}) => {
-  const videoUrl = doc.data.streamingUrl
+  const videoUrl = doc?.data?.streamingUrl
   if(!videoUrl) {
     console.error('Video not valid, doc data must contain a streamingUrl')
     return null
