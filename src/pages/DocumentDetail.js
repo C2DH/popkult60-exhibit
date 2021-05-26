@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useDocument } from '@c2dh/react-miller'
 import { useTranslation } from 'react-i18next'
 import { ArrowLeft } from 'react-feather'
@@ -8,17 +8,36 @@ import LangLink from '../components/LangLink'
 import { useCurrentWindowDimensions } from '../hooks'
 import { useStore } from '../store'
 import '../styles/pages/DocumentDetail.scss'
-
+import {
+  useQueryParams,
+  StringParam,
+} from 'use-query-params';
 
 const DocumentDetail = () => {
   const { id } = useParams()
   const { t, i18n } = useTranslation()
+  const history = useHistory()
   const { width, height } = useCurrentWindowDimensions()
   const {changeTheme} = useStore(state => state)
 
+  const [query] = useQueryParams({
+    next: StringParam,
+    h: StringParam
+  });
+
   const [doc, {pending}] = useDocument(id, {
-    language: i18n.language,
+    language: i18n.language.split('-').join('_'),
+    defaultLanguage: i18n.options.defaultLocale,
   })
+
+  const handleLangLinkClick = (e) => {
+    e.preventDefault();
+    history.replace(`/${i18n.language.split('-')[0]}${query.next ? nexturl : '/collection'}`)
+  }
+
+  const nexturl = query.next
+    ? [query.next, query.h].join('#')
+    : '/collection'
 
   useEffect(() => {
     changeTheme({
@@ -31,13 +50,14 @@ const DocumentDetail = () => {
       className="DocumentDetail position-relative h-100"
     >
       <LangLink
-        to="/collection"
+        to={nexturl}
+        onClick={handleLangLinkClick}
         className="DocumentDetail_close d-flex align-items-center"
       >
         <ArrowLeft color="var(--white)"/>
-        <span className="ml-2 text-uppercase text-white font-weight-bold">
+        {query.next ? null : (<span className="ml-2 text-uppercase text-white font-weight-bold">
           {t('all resources')}
-        </span>
+        </span>)}
       </LangLink>
       {doc
         ? <DocumentViewer doc={doc} width={width} height={height}/>

@@ -5,7 +5,7 @@ import ObjectContent from '../ObjectContent'
 import { useBoundingClientRect } from '../../hooks'
 import { getModuleLayout } from '../../logic/layout'
 
-const StoryModuleTextObject = ({ mod, documents, backgroundStyles, withMap=false, num }) => {
+const StoryModuleTextObject = ({ mod, documents, backgroundStyles, withMap=false, num, inViewport }) => {
   const [{ left, width }, ref] = useBoundingClientRect({ accurate: true})
   const layout = getModuleLayout(mod, withMap)
   return (
@@ -21,6 +21,7 @@ const StoryModuleTextObject = ({ mod, documents, backgroundStyles, withMap=false
               <ObjectContent key={i} document={d} objectConfig={mod.object}
                 availableHeight={window.innerHeight * .75}
                 availableWidth={withMap ? width + left - 20 : width/2 - 20}
+                inViewport={inViewport}
                 style={{
                   marginLeft: -left,
                 }}

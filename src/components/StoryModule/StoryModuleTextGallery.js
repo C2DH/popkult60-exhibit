@@ -17,6 +17,7 @@ const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings, wi
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    // focusOnSelect: true,
     // initialSlide: documents.length - 1,
     variableWidth: true,
     // ...settings,
@@ -53,10 +54,11 @@ const StoryModuleTextGallery = ({ mod, documents, backgroundStyles, settings, wi
             let slideWidth = maxAvailableSlideHeight*slideContentWidth/slideContentHeight;
 
             return (
-              <StoryModuleTextGalleryItem index={i} key={d.id} doc={d} data={d.data} type={d.type} style={{
-                width: slideWidth,
-                height: maxAvailableSlideHeight,
-              }}/>
+              <StoryModuleTextGalleryItem index={i} key={d.id} doc={d} data={d.data} type={d.type}
+                style={{
+                  width: slideWidth,
+                }}
+              />
             )
           })}
         </Slider>

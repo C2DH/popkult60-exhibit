@@ -1,8 +1,9 @@
 import React from 'react'
 import { useStore } from '../../store'
-import { Maximize2 } from 'react-feather'
+import ObjectContentCaption from '../ObjectContent/ObjectContentCaption'
 
-const StoryModuleTextGalleryItem = ({ index , doc, data={}, type, ...props }) => {
+
+const StoryModuleTextGalleryItem = ({ index , doc, data={}, type, height, ...props }) => {
   const openDocumentFullScreen = useStore(state => state.openDocumentFullScreen)
 
   const onClickHandler = () => {
@@ -10,6 +11,8 @@ const StoryModuleTextGalleryItem = ({ index , doc, data={}, type, ...props }) =>
   }
   return (
     <div  {...props} className="StoryModuleTextGalleryItem p-1">
+      <div className="d-flex flex-column" style={{height}}>
+        <div>
         <img
           nopin="nopin"
           alt={data.title ? data.title : ""}
@@ -20,12 +23,13 @@ const StoryModuleTextGalleryItem = ({ index , doc, data={}, type, ...props }) =>
             objectFit: 'contain'
           }}
         />
-        <div onClick={onClickHandler} className="StoryModuleTextGalleryItem_caption">
-          <span>{data.title}</span>
-          <Maximize2 />
-        </div>
       </div>
-    );
+      <div onClick={onClickHandler} className="StoryModuleTextGalleryItem_caption flex-shrink-1">
+        <ObjectContentCaption doc={doc} />
+      </div>
+    </div>
+    </div>
+  )
 }
 
 export default StoryModuleTextGalleryItem

@@ -1,19 +1,23 @@
 import React from 'react'
-import { ArrowUp, Maximize2 } from 'react-feather'
+import { ArrowUp, ArrowRightCircle } from 'react-feather'
 import { get } from 'lodash'
-import { useStore } from '../../store'
-
+import LangLink from '../LangLink'
+import { useHistory } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const ObjectContentCaption = ({ doc, caption='' }) => {
   const title = get(doc, 'data.title', 'untitled')
   const copyright = get(doc, 'data.copyright', '©')
-  const openDocumentFullScreen = useStore(state => state.openDocumentFullScreen)
-
-  const onClickHandler = (e) => {
+  const history = useHistory()
+  const { i18n } = useTranslation()
+  // current position
+  const handleLangLinkClick = (e, documentId) => {
+    // remove language
+    const nextUrl = history.location.pathname.replace(/^\/[a-z]{2}/, '')
+    const nextHash = window.location.hash.replace('#', '') ?? ''
     e.preventDefault()
-    openDocumentFullScreen(doc)
+    history.push(`/${i18n.language.split('-')[0]}/doc/${doc.slug}?next=${nextUrl}&h=${nextHash}`)
   }
-
   return (
     <div className="ObjectContentCaption small p-1">
       <div className="ObjectContentCaption_captionText  d-flex align-items-top">
@@ -23,21 +27,20 @@ const ObjectContentCaption = ({ doc, caption='' }) => {
         <div>
           <b>{title}</b> &middot; {copyright}
           {caption.length ? (<p>{caption}</p>) : null}
-          <div className="ml-2 d-inline-flex align-items-center justify-content-between" onClick={onClickHandler} style={{
-            border: '1px solid var(--dark)',
-            borderRadius: 5,
-            // color: 'var(--white)',
-            textAlign: 'center',
-            // height: 24,
-            width: 70,
-            // overflow: 'hidden',
-            // lineHeight: '18px',
-            padding: '0px 8px ',
-            fontSize:11,
-            lineHeight: 'inherit'
-          }}><b>INFO</b>&nbsp;&nbsp;
-            <Maximize2 size={16}/>
-          </div>
+          &nbsp;&nbsp;
+          {doc ? <LangLink onClick={(e) => handleLangLinkClick(e, doc.slug)} to={`/doc/${doc.slug}`} className="d-inline-flex align-items-center" style={{
+              background: 'var(--dark)',// color: 'var(--white)',
+              borderRadius: 5,
+              fontSize: 14,
+              padding: '0px 8px ',
+              lineHeight: 'inherit',
+              textTransform: 'uppercase'
+            }}>
+            <b style={{color: 'var(--white)' }}>more ...&nbsp;&nbsp;</b>
+            <ArrowRightCircle size={16}
+            color="var(--white)"/>
+          </LangLink>
+        : null}
         </div>
       </div>
     </div>

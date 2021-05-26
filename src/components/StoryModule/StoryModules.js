@@ -38,6 +38,7 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
         onChange({
           idx: maxProgress.idx
         })
+        window.history.pushState({}, null, `#p${maxProgress.idx + 1}`)
       }
       setScrollingSteps({ steps, current: maxProgress.idx })
       // console.log('@handleScroll', maxProgress);
@@ -55,6 +56,9 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
   useEffect(() => {
     console.info('Story HEIGHT and width changed', width, height, window.scrollY)
     if (storyModules && storyModules.length) {
+      console.info('LODADED')
+
+
       const myNodeList = document.getElementsByClassName('StoryModule')
       const steps = []
       for (let i = 0; i < myNodeList.length; i++) {
@@ -66,17 +70,28 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
       }
       // reset our reference.
       setScrollingSteps({steps})
+
+      // let timer = setTimeout(() => {
+      //   const id = window.location.hash.replace('#', '');
+      //   if (id.length && !withMap) {
+      //     // go to anchor
+      //     const element = document.getElementById(id);
+      //     console.info('ScrollToTop: reaching id =', id);
+      //     if (element) {
+      //       // element.scrollIntoView();
+      //       window.scrollTo(0, element.offsetTop)
+      //     }
+      //   }
+      // }, 100)
+      //
+      // return () => {
+      //   clearTimeout(timer)
+      // }
     }
-  }, [width, height, storyModules])
+  }, [width, height, storyModules, withMap])
 
   return (
     <>
-    {/*<StoryBackgroundModules
-      storyModules={storyModules}
-      storyDocuments={storyDocuments}
-      currentModule={scrollingSteps.current}
-      withMap={withMap}
-    />*/}
     <div style={{
       marginTop: withMap ? window.innerHeight / 4 : 100,
     }}>
@@ -88,7 +103,10 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
           // stepInViewport = scrollingSteps.steps[i].inViewport
         }
         return (
-          <StoryModule num={i+1} key={i} mod={d} width={width} height={height} progress={scrollingSteps.current === i ? stepProgress : 0} inViewport={scrollingSteps.current === i} storyDocuments={storyDocuments} withMap={withMap}/>
+          <React.Fragment key={i}>
+            <div className="anchor" id={`p${i+1}`}></div>
+            <StoryModule num={i+1} key={i} mod={d} width={width} height={height} progress={scrollingSteps.current === i ? stepProgress : 0} inViewport={scrollingSteps.current === i} storyDocuments={storyDocuments} withMap={withMap}/>
+          </React.Fragment>
         )
       })}
     </div>

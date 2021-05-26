@@ -27,13 +27,13 @@ const DocumentViewer = ({ doc = {}, width, height }) => {
   }
   return(
     <div className="DocumentViewer">
-      <DocumentViewerComponent doc={doc} height={height * .8} />
+      <DocumentViewerComponent doc={doc} height={height * .8}/>
       <div className="border-top border-white">
         <Container className="border-bottom border-white">
           <Row>
             <Col>
               <div className="badge badge-primary-outline">{t(getTranslatableTypeFromMetadata(doc.data))}</div>
-              <h2 className="text-smaller">{doc.title}</h2>
+              <h2 className="text-smaller">{doc.data.title}</h2>
             </Col>
           </Row>
           <Row className="border-top border-white mt-2">

@@ -1,0 +1,15 @@
+.Logo{
+  .Logo_path{
+    fill: var(--dark);
+    stroke: transparent;
+  }
+}
+
+body.themeStaticPage, body.themeDocumentDetail{
+  .Logo{
+    .Logo_path{
+      fill: var(--white);
+      stroke: transparent;
+    }
+  }
+}

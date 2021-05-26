@@ -1,8 +1,10 @@
 .Footer{
+  pointer-events: none;
   padding-bottom: var(--spacer-5);
   padding-top: var(--spacer-5);
 
   .nav a{
     padding: 0 1rem;
+    pointer-events: auto;
   }
 }

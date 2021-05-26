@@ -5,7 +5,7 @@ import { getModuleLayout } from '../../logic/layout'
 
 const ModuleText = ({ mod, backgroundStyles, withMap=false }) => {
   // const layout = get(mod, "layout", "text-object")
-  console.info('ModuleText module:', mod)
+  // console.info('ModuleText module:', mod)
   const layout = getModuleLayout(mod)
   return (
     <Container className="StoryModuleText">

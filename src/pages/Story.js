@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next'
 import { useCurrentWindowDimensions } from '../hooks'
 import { useStore } from '../store'
 import StoryModules from '../components/StoryModule/StoryModules'
-import StoryCollection from '../components/StoryCollection'
 import MapboxWrapper from '../components/MapboxWrapper'
 import { Themes } from '../constants'
 
@@ -93,6 +92,26 @@ const Story = () => {
       // color: '#121821',
     });
   }, [changeTheme])
+
+  // scroll to anchor see StoryModules module
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      const id = window.location.hash.replace('#', '');
+      if (storyModules.length && id.length) {
+        // go to anchor
+        const element = document.getElementById(id);
+        console.info('ScrollToTop: reaching id =', id);
+        if (element) {
+          // element.scrollIntoView();
+          window.scrollTo(0, element.offsetTop)
+        }
+      }
+    }, 100)
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [storyModules.length])
+
   if (error) {
     console.error(error)
   }
@@ -137,7 +156,6 @@ const Story = () => {
         ? <MapboxWrapper fixed height={height} width={width} left={0} paddingLeft={width/2} initialLng={theme?.bboxes[0][0][0]} initialLat={theme?.bboxes[0][0][1]} bbox={bbox}/>
         : null
       }
-      <StoryCollection height={height} width={width}/>
       <StoryModules onChange={handleStoryModuleChange} height={height} width={width}
         storyModules={storyModules}
         storyDocuments={story?.documents || []}

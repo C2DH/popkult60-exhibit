@@ -1,6 +1,7 @@
 import React from 'react'
 import ObjectContentImage from './ObjectContentImage'
 import DocumentViewerVideo from '../DocumentViewer/DocumentViewerVideo'
+import DocumentViewerAudio from '../DocumentViewer/DocumentViewerAudio'
 import { get } from 'lodash'
 import '../../styles/components/ObjectContent.scss'
 import ObjectContentCaption from './ObjectContentCaption'
@@ -10,6 +11,7 @@ const ObjectContent = ({ objectConfig, document, goBig,
   availableWidth = 0,
   availableHeight = 0,
   className, style,
+  inViewport = false,
   debug = false,
 }) => {
   const objectContentWidth = get(document, 'data.resolutions.medium.width', window.innerHeight / 2)
@@ -42,7 +44,12 @@ const ObjectContent = ({ objectConfig, document, goBig,
       )}
       {objectConfig.type === "video" && ( // see storyBackgroundModule
         <div className="text-white">
-          <DocumentViewerVideo paddingTop={0} doc={document} height={availableHeight} />
+          <DocumentViewerVideo paddingTop={0} doc={document} height={availableHeight} width={width} inViewport={inViewport}/>
+        </div>
+      )}
+      {objectConfig.type === "audio" && ( // see storyBackgroundModule
+        <div className="text-white">
+          <DocumentViewerAudio paddingTop={0} doc={document} height={availableHeight} width={width} inViewport={inViewport}/>
         </div>
       )}
       <div className="ObjectContent_captionWrapper">
