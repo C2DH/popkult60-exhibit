@@ -12,12 +12,11 @@ const ObjectContentCaption = ({ doc, caption='' }) => {
   const { i18n } = useTranslation()
   // current position
   const handleLangLinkClick = (e, documentId) => {
-    let nextUrl = history.location.pathname
-    if (window.location.hash) {
-      nextUrl = nextUrl + window.location.hash
-    }
+    // remove language
+    const nextUrl = history.location.pathname.replace(/^\/[a-z]{2}/, '')
+    const nextHash = window.location.hash.replace('#', '') ?? ''
     e.preventDefault()
-    history.push(`/${i18n.language.split('-')[0]}/doc/${doc.slug}?next=${nextUrl}`)
+    history.push(`/${i18n.language.split('-')[0]}/doc/${doc.slug}?next=${nextUrl}&h=${nextHash}`)
   }
   return (
     <div className="ObjectContentCaption small p-1">

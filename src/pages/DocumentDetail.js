@@ -19,11 +19,12 @@ const DocumentDetail = () => {
   const history = useHistory()
   const { width, height } = useCurrentWindowDimensions()
   const {changeTheme} = useStore(state => state)
+
   const [query] = useQueryParams({
     next: StringParam,
     h: StringParam
   });
-  console.info('DocumentDetail', query)
+
   const [doc, {pending}] = useDocument(id, {
     language: i18n.language.split('-').join('_'),
     defaultLanguage: i18n.options.defaultLocale,
@@ -31,9 +32,13 @@ const DocumentDetail = () => {
 
   const handleLangLinkClick = (e) => {
     e.preventDefault();
-    console.info('history', history.location)
-    history.replace(query.next ?? '/collection')
+    history.replace(`/${i18n.language.split('-')[0]}${query.next ? nexturl : '/collection'}`)
   }
+
+  const nexturl = query.next
+    ? [query.next, query.h].join('#')
+    : '/collection'
+
   useEffect(() => {
     changeTheme({
       name: 'themeDocumentDetail',
@@ -45,7 +50,7 @@ const DocumentDetail = () => {
       className="DocumentDetail position-relative h-100"
     >
       <LangLink
-        to={query.next ?? '/collection'}
+        to={nexturl}
         onClick={handleLangLinkClick}
         className="DocumentDetail_close d-flex align-items-center"
       >
