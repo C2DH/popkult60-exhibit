@@ -30,7 +30,8 @@ const Header = () => {
   const { pathname } = location
   const { t, i18n } = useTranslation()
   const [activeRoute, setActiveRoute] = useState('')
-  const { color, activeColor, logoColor, logoActiveColor, logoReduced } = useStore((state) => state);
+  const { color, activeColor } = useStore((state) => state);
+
   useEffect(() => {
     // get rid of language prefix
     const route = `/${pathname.split('/').slice(2).join('/')}`
@@ -46,12 +47,7 @@ const Header = () => {
       <Container>
         <Row>
           <Col>
-            <Logo id="logo"
-              logoReduced={activeRoute !== '/'}
-              logoColor={logoColor}
-              logoActiveColor={logoActiveColor}
-              width={activeRoute === '/' ? 450 : 250}
-            />
+            <Logo logoReduced={activeRoute !== '/'} />
           </Col>
           <Col md={{span:4}}>
             <div className="Header_menuGroup d-flex justify-content-center">
