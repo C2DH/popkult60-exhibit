@@ -12,7 +12,7 @@ const StaticPage = ({
 }) => {
   const { i18n } = useTranslation()
   const {changeTheme} = useStore(state => state)
-  const [story, { pending, error }] = useStory(id, {
+  const [story, { error }] = useStory(id, {
     parser: 'yaml'
   }, {
     language: i18n.language.replace('-','_'),
