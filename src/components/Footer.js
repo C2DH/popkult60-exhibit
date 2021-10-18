@@ -16,7 +16,7 @@ const Footer = () => {
   const { activeRoute } = useNolangLocation()
   return (
     <footer className="Footer w-100">
-    <Container className="pt-5">
+    <Container className="pt-5-md">
       <Row>
         <Col>Copyright © <a href="https://www.uni.lu/">University of Luxembourg</a> {now.getFullYear()}</Col>
         <Col>

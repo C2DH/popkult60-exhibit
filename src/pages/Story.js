@@ -9,6 +9,7 @@ import { useStore } from '../store'
 import StoryModules from '../components/StoryModule/StoryModules'
 import MapboxWrapper from '../components/MapboxWrapper'
 import { Themes } from '../constants'
+import '../styles/pages/Story.scss'
 
 const calc = (ratio=1.5) => o => `translateY(${-o * ratio}px)`;
 
@@ -134,7 +135,7 @@ const Story = () => {
                 {author.fullname}
               </div>
             ))}
-            <h1 className="display-2 text-center">{story?.data?.title || '...'}</h1>
+            <h1 className="text-center">{story?.data?.title || '...'}</h1>
           </div>
         </Container>
       </animated.div>

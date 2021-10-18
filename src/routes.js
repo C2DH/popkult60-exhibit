@@ -4,7 +4,6 @@ import { Switch, Route, Redirect, useRouteMatch, useLocation } from "react-route
 import { QueryParamProvider } from 'use-query-params'
 import AppRouteLoading from './pages/AppRouteLoading'
 import { LanguageRoutePattern } from './constants'
-import { useCurrentWindowDimensions } from './hooks'
 
 /* Pages */
 const Home = lazy(() => import('./pages/Home'))
@@ -15,15 +14,14 @@ const Collection = lazy(() => import('./pages/Collection'))
 const Story = lazy(() => import('./pages/Story'))
 
 /* Pages routing by language */
-const LangRoutes = () => {
+const LangRoutes = ({ isMobile, width, height }) => {
   const { path } = useRouteMatch()
   // const publicPath = `${process.env.PUBLIC_URL || ''}${path}`
   // console.info('publicPath', publicPath)
-  const { width, height } = useCurrentWindowDimensions()
   return (
     <Switch>
       <Route exact path={`${path}`}>
-        <Home width={width} height={height} />
+        <Home isMobile={isMobile} width={width} height={height} />
       </Route>
       <Route exact path={`${path}/loading`}>
         <AppRouteLoading width={width} height={height} />
@@ -67,7 +65,7 @@ const usePageViews = ({ enableGA }) => {
   )
 }
 
-const AppRoutes = ({enableGA=false, startLanguageCode='en'}) => {
+const AppRoutes = ({ width, height, isMobile, enableGA=false, startLanguageCode='en'}) => {
   usePageViews({ enableGA })
   return (
     <Suspense fallback={<AppRouteLoading/>}>
@@ -75,7 +73,7 @@ const AppRoutes = ({enableGA=false, startLanguageCode='en'}) => {
     <Switch>
       <Redirect from="/" exact to={startLanguageCode} />
       <Route path={LanguageRoutePattern}>
-        <LangRoutes />
+        <LangRoutes isMobile={isMobile} width={width} height={height}/>
       </Route>
       <Route path="*">
         <NotFound />
