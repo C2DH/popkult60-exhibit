@@ -29,6 +29,7 @@ jobs:
       env:
         GIT_BRANCH: ${{ steps.extract_branch.outputs.branch }}
         GIT_REVISION: ${{ steps.extract_hash.outputs.hash }}
+        PUBLIC_URL: /e
       with:
         name: c2dhunilu/popkult60-exhibit
         username: ${{ secrets.DOCKERHUB_USERNAME }}
