@@ -4,7 +4,7 @@ on:
   # for the develop branch and all new tags
   push:
     branches:
-      - develop
+      - master
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -33,5 +33,5 @@ jobs:
         name: c2dhunilu/popkult60-exhibit
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        buildargs: GIT_BRANCH,GIT_REVISION
+        buildargs: GIT_BRANCH,GIT_REVISION,PUBLIC_URL
         tags: "latest"

@@ -29,10 +29,10 @@ jobs:
       env:
         GIT_BRANCH: ${{ steps.extract_branch.outputs.branch }}
         GIT_REVISION: ${{ steps.extract_hash.outputs.hash }}
-        PUBLIC_URL: /e
+        PUBLIC_URL: "/e"
       with:
         name: c2dhunilu/popkult60-exhibit
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
-        buildargs: GIT_BRANCH,GIT_REVISION
+        buildargs: GIT_BRANCH,GIT_REVISION,PUBLIC_URL
         tags: "${{ env.RELEASE_VERSION }}"
