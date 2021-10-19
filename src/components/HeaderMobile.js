@@ -36,21 +36,22 @@ const HeaderMobile = ({ width, height, panelName="menu" }) => {
       height:50,
       transform: props.y ? props.y.interpolate(transform) : null,
     }}>
-      <Logo offsetTop={5} initialWidth={270} offsetLeft={(width - 270*.9) / 2}/>
+      <Logo offsetTop={5} initialWidth={270} offsetLeft={12}/>
       </animated.header>
       <div className="position-fixed HeaderMobile_toggler" onClick={handleClick}>menu <Menu size={13}/></div>
-      <Panel width={width} height={height} name={panelName} left color="var(--white)">
+      <Panel width={width} height="100%" name={panelName} left color="var(--white)">
         <div className="pointer-events-none" style={{height: 70}}>
           <Logo initialWidth={200} offsetTop={15} offsetLeft={(width - 180) / 2} fill="var(--white)"/>
         </div>
         <ul style={{listStyleType: 'none', paddingLeft:0}}>
           {PrimaryRoutes.concat([TermsOfUseRoute]).map((route,k) => (
-            <li key={k} className="border-top border-white" style={{paddingLeft:50}}>
-              <h2 className="m-0 px-0 py-2">
-                <LangLink to={route.to} className="text-white text-center">
+            <li key={k} className="border-top border-white py-2" style={{paddingLeft:50}}>
+              <h2 className="m-0 p-0">
+                <LangLink to={route.to} className="text-white">
                   {t(route.label)}
                 </LangLink>
               </h2>
+              {route.description? <p className="text-white m-0" style={{paddingRight:50, opacity: .6}}>{t(route.description)}</p>: null}
             </li>
           ))}
         </ul>
