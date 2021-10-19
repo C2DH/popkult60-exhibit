@@ -113,7 +113,7 @@
     "translation": {
       "asNumber": "{{ n,2 }}",
       "navigationAbout": "über uns",
-      "navigationCollection": "Sammung",
+      "navigationCollection": "Sammlung",
       "navigationHome": "Home",
       "navigationTermsOfUse": "Begriffe",
       "pagesAppRouteLoadingTitle": "loading...",
