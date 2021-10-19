@@ -38,7 +38,7 @@ const StoryModules = ({ width=0, height=0, storyModules=[], storyDocuments=[], o
         onChange({
           idx: maxProgress.idx
         })
-        window.history.pushState({}, null, `#p${maxProgress.idx + 1}`)
+        window.history.replaceState({}, null, `#p${maxProgress.idx + 1}`)
       }
       setScrollingSteps({ steps, current: maxProgress.idx })
       // console.log('@handleScroll', maxProgress);
