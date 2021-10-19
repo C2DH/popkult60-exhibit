@@ -81,10 +81,17 @@ body.themeCollection input::-ms-input-placeholder { /* Microsoft Edge */
 }
 
 body.themeHome .Footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
-  left:0;
+  background-color: var(--blanched-almond);
+}
+@media(min-width: 768px) {
+  body.themeHome .Footer {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    background-color: transparent;
+    z-index: 2;
+  }
 }
 
 body.themeStory .Footer{

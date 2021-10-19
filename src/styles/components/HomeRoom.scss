@@ -2,6 +2,12 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: -1;
+}
+@media(min-width:768px) {
+  .HomeRoom {
+    z-index: 1;
+  }
 }
 
 .HomeRoom_background{
