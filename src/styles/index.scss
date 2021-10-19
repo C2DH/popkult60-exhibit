@@ -56,6 +56,15 @@ h2{
   line-height: 1.75;
 }
 
+.left-0{
+  left: 0
+}
+.right-0{
+  right: 0
+}
+.pointer-events-none{
+  pointer-events: none;
+}
 #logo{
   position: absolute;
   top: -20px; // this is related to header top offset

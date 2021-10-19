@@ -1,0 +1,16 @@
+.HeaderMobile_toggler{
+  top: 42px;
+  right: -22px;
+  transform: rotate(-65deg);
+  width: auto;
+  height: 30px;
+  overflow: hidden;
+  background-color: var(--accent);
+  color: var(--blanched-almond);
+  border-radius: 30px;
+  line-height: 30px;
+  font-family: var(--font-family-headings);
+  padding: 0 10px;
+  font-size: 15px;
+  z-index: 1001;
+}

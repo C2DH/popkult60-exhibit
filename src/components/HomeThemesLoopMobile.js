@@ -2,10 +2,10 @@ import React from 'react'
 import LangLink from './LangLink'
 import '../styles/components/HomeThemesLoopMobile.scss'
 
-const HomeThemesLoopMobile = ({ themes, loading, className, ...rest }) => {
+const HomeThemesLoopMobile = ({ themes, loading, className }) => {
 
   return (
-    <ul className={`HomeThemesLoopMobile ${className}`} {...rest}>
+    <ul className={`HomeThemesLoopMobile ${className}`}>
       {themes.map((theme,i) => (
         <li key={i}>
           <h2>
