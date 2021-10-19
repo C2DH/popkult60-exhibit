@@ -1,6 +1,6 @@
 {
   "name": "popkult60-exhibit",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "dependencies": {
     "@c2dh/react-miller": "0.0.3",
     "@testing-library/jest-dom": "^5.11.4",
